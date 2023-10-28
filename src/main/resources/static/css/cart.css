@@ -1,0 +1,146 @@
+
+.container h1 {
+    margin: 200px auto 10px auto;
+    width: 1400px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 나머지 스타일 유지 */
+
+/* 장바구니 스타일링 */
+
+table {
+    width: 1400px;
+    border-collapse: collapse;
+    margin: 20px auto; /* 수평 중앙 정렬 */
+}
+
+td {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px; /* Request 4: 사진 column 축소를 위한 글꼴 크기 조정 */
+}
+
+td img.repImg {
+    max-width: 100px; /* 원하는 크기로 조절 가능 */
+    height: auto;
+}
+
+input[type="number"] {
+    width: 30px; /* Request 3: checkbox 크기 조정 */
+    height: 30px; /* Request 3: checkbox 크기 조정 */
+}
+
+th input[type="checkbox"] {
+    width: 100px; /* 더 큰 크기로 조절 가능 */
+    margin: 0; /* 기본 간격 제거 */
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+    display: center;
+}
+
+#total-price {
+    font-weight: bold;
+    font-size: 18px; /* Request 1: 글꼴 크기를 키우기 */
+}
+
+.close {
+    text-align: center;
+    display: block;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto; /* 중앙 정렬을 위해 수정 */
+    cursor: pointer;
+    font-size: 16px; /* Request 3: close 버튼 크기 조정 */
+}
+
+.close:hover {
+    background-color: #0056b3; /* 버튼 호버 스타일 추가 */
+}
+
+.repImg {
+    height: 100px; /* Request 4: 사진 column 축소를 위한 이미지 크기 조정 */
+    width: 100px; /* Request 4: 사진 column 축소를 위한 이미지 크기 조정 */
+}
+
+th {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px; /* Request 1: 글꼴 크기를 키우기 */
+}
+
+th.product-info {
+    text-align: left; /* '상품정보' collumn을 좌측으로 이동 */
+}
+
+td.close {
+    text-align: center; /* '삭제' collumn의 텍스트 가운데 정렬 */
+}
+
+td.cart-total {
+    text-align: right; /* '가격' collumn의 텍스트를 오른쪽 정렬 */
+}
+
+
+.close {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: inline; /* '삭제' 버튼을 인라인 요소로 변경하여 텍스트와 가깝게 배치 */
+}
+
+th {
+    background-color: #f0f0f0;
+    font-size: 16px; /* Request 1: 글꼴 크기를 키우기 */
+}
+
+td.cart-total {
+    text-align: center; /* '가격' collumn의 텍스트를 오른쪽 정렬 */
+}
+
+#checkout-btn {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto; /* 중앙 정렬을 위해 수정 */
+    cursor: pointer;
+    display: block; /* 주문하기 버튼을 블록 요소로 변경하여 중앙 정렬 적용 */
+}
+
+#checkout-btn:hover {
+    background-color: #0056b3;
+}
+
+#orderTotalPrice h2{
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    display: block;
+    margin: 0 auto;
+}
+
+h2.text-center {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.login-divider {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  width: 1400px;
+}

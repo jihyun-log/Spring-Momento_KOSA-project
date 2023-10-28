@@ -1,0 +1,116 @@
+/* 추가된 스타일 */
+input[type="number"] {
+    width: 40px;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 20px; /* 수정된 부분 */
+}
+
+.form-inline {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.form-inline .form-control {
+    width: auto;
+    margin-right: 10px;
+}
+
+.form-inline .btn {
+    margin-left: 10px;
+}
+
+.form-control {
+    width: auto;
+    padding: 8px 10px; /* 내부 여백 추가 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.form-control:focus {
+    border-color: #333; /* 입력 필드가 포커싱될 때 테두리 색상 변경 */
+}
+
+.form-control select {
+    width: auto;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.btn {
+    margin-left: 10px;
+    padding: 8px 16px; /* 버튼 내부 여백 추가 */
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #555; /* 버튼에 호버 시 배경색 변경 */
+}
+/* 끝 */
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 200px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.green-text {
+    color: green;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.red-text {
+    color: red;
+}

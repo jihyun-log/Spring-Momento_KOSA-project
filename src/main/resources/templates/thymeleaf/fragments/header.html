@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header id="header" th:fragment="header">
+    <div class="top">
+        <div class="container">
+            <div class="gap">
+                <div class="wrap">
+                    <div class="left">
+                        <div class="lang">
+                            <a href="#" class="kor"><img src="/img/lang_kor.gif" alt="">KOR</a>
+                            <ul class="lang-list">
+                                <li><a href="#"><img src="/img/lang_eng.gif" alt="">ENG</a></li>
+                            </ul>
+                        </div>
+                        <div class="sns-box">
+                            <ul>
+                                <li><a href="https://ko-kr.facebook.com/" title="페이스북"><img src="/img/sns_facebook.gif" alt="facebook"></a></li>
+                                <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%EB%83%85%EC%82%AC%EC%A7%84/" title="인스타그램"><img src="/img/sns_insta.gif" alt="instagram"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li class="nav-product" sec:authorize="isAnonymous()">
+                                <a class="nav-link" href="/members/login">LOGIN</a>
+                            <li><i>|</i></li>
+                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                <a class="nav-link" href="/members/logout">LOGOUT <i>|</i></a>
+                            <li><a href="https://naver.me/xn6PvLTD" title="SITE MAP">SITE MAP</a></li>
+                            <li><i>|</i></li>
+                            <li><a href="#footer" title="CONTACT US">CONTACT US</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="container">
+            <div class="gap">
+                <div class="wrap">
+                    <div class="logo">
+                        <a href="/"><img src="/img/logo.png" alt=""></a>
+                    </div>
+                    <nav id="nav">
+                        <ul>
+                            <li>
+                                <a href="/history" title="회사소개" class="main-btn">회사소개</a>
+                            </li>
+                            <li>
+                                <a href="/product" title="제품" class="main-btn">THEME</a>
+                                <div class="sub sub2">
+                                    <ul>
+                                        <li><a href="/anime" title="애니메이션">애니메이션</a></li>
+                                        <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                        <li><a href="/vintage" title="빈티지">빈티지</a></li>
+                                        <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                        <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                        <li><a href="/etc" title="기타">기타</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                <a class="nav-link" href="javascript:void(0);" onclick="openChatPopup()">실시간 채팅</a>
+                            </li>
+
+                            <script>
+                                function openChatPopup() {
+                                    var popupWidth = 600;
+                                    var popupHeight = 700;
+                                    var left = (screen.width - popupWidth) / 2;
+                                    var top = (screen.height - popupHeight) / 2;
+
+                                    // 주소 입력창 없이 팝업 창 열기
+                                    var chatPopup = window.open("/room", "ChatPopup", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top + ",location=0,menubar=0,toolbar=0,status=0");
+
+                                    // 팝업 창이 이미 열려 있는 경우에 대한 처리
+                                    if (chatPopup) {
+                                        chatPopup.focus();
+                                    } else {
+                                        alert("팝업 창이 차단되었거나 브라우저가 팝업 창을 지원하지 않습니다.");
+                                    }
+                                }
+                            </script>
+                            <li class="main-btn" sec:authorize="isAuthenticated()">
+                                <a class="nav-link" href="/cart">장바구니</a>
+                            </li>
+                            <div class="sub sub4">
+                            </div>
+                            <li>
+                                <a href="/orders" title="MY PAGE" class="main-btn">MY PAGE</a>
+                                <div class="sub sub5">
+                                    <ul>
+                                        <li class="nav-product" sec:authorize="isAuthenticated()">
+                                            <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                            <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="isAuthenticated()">
+                                            <a class="nav-link" href="/orders">구매 이력</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                            <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="icon-box">
+                        <form id="search-form" class="form-inline my-2 my-lg-0" th:action="@{/product}" method="get">
+                            <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        <a href="#" title="검색" id="search-button"><i class="fa fa-search"></i></a>
+                        <a href="#" class="all" title="전체메뉴">
+                  <span class="all-btn">
+                    <i class="line1"></i>
+                    <i class="line2"></i>
+                    <i class="line3"></i>
+                  </span>
+                        </a>
+                    </div>
+                    <div class="all-menu">
+                        <ul>
+                            <li>
+                                <a href="/history" title="회사소개" class="sub-title">회사소개</a>
+                                <div class="all-sub sub1">
+                                    <ul>
+                                        <li><a href="/history" title="회사정보">회사정보</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/product" title="제품" class="sub-title">THEME</a>
+                                <div class="all-sub sub2">
+                                    <ul>
+                                        <li><a href="/wedding" title="애니메이션">애니메이션</a></li>
+                                        <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                        <li><a href="/vintage#" title="빈티지">빈티지</a></li>
+                                        <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                        <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                        <li><a href="/etc" title="기타">기타</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/chat" title="chatting" class="sub-title">실시간 채팅</a>
+                                <div class="all-sub sub3">
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/cart" title="장바구니" class="sub-title" sec:authorize="isAuthenticated()">장바구니</a>
+                                <div class="all-sub sub4">
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/orders" title="MY PAGE" class="sub-title">MY PAGE</a>
+                                <div class="all-sub sub5">
+                                    <ul>
+                                        <li class="nav-product" sec:authorize="isAuthenticated()">
+                                            <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                            <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="isAuthenticated()">
+                                            <a class="nav-link" href="/orders">구매 이력</a>
+                                        </li>
+                                        <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                            <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</html>

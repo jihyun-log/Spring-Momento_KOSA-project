@@ -1,0 +1,94 @@
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination .page-item {
+    display: inline;
+    margin: 5px;
+    padding: 3px;
+}
+
+.pagination .page-link {
+    padding: 5px 10px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .page-item.disabled .page-link {
+    cursor: not-allowed;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(266px, 1fr)); /* 좌우 여백을 유지하며 최대한 많은 열로 나열 */
+  border-radius: 10px; /* 조금 둥글게 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  gap: 20px; /* 이미지 사이의 간격을 10px로 설정 */
+  margin: 10px 10px; /* 페이지 중앙으로 정렬 */
+  max-width: 350px; /* 페이지의 최대 너비를 지정 */
+  padding: 0 20px; /* 좌우 여백 추가 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+/* 카드 레이아웃 스타일 */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 180px;
+    max-width: 1400px;
+}
+
+
+.card a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 기본 텍스트 색상 유지 */
+}
+
+.card-img-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    max-width: none; /* 오리지널 사이즈 유지 */
+    max-height: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+}
+
+.card-title.text-danger {
+    color: red;
+}

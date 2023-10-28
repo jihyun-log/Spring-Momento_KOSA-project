@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{thymeleaf/layouts/layout1}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mail</title>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<th:block layout:fragment="script">
+  <script>
+    const add_textbox = (obj) => {
+      const box = obj.parentElement.parentElement;
+      const newP = document.createElement("tr");
+
+      newP.innerHTML = "<tr class='form-group'><td>메일 주소</td><td><input type='text' class='form-control' name='address' ></td><td><input type='button' class='form-control' value='삭제' onclick='opt_remove(this)'></td></tr>";
+      box.parentNode.insertBefore(newP, box.nextSibling);
+    }
+
+    const add_textbox2 = (obj) => {
+      const box = obj.parentElement.parentElement;
+      const newP = document.createElement("tr");
+
+      newP.innerHTML = "<tr class='form-group'><td>참조 메일 주소</td><td><input type='text' class='form-control' name='ccAddress' ></td><td><input type='button' class='form-control' value='삭제' onclick='opt_remove2(this)'></td></tr>";
+      box.parentNode.insertBefore(newP, box.nextSibling);
+    }
+
+    const opt_remove = (obj) => {
+      obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
+    }
+
+    const opt_remove2 = (obj) => {
+      obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
+    }
+  </script>
+</th:block>
+
+<th:block layout:fragment="css">
+  <style>
+    .content {
+      margin-top: 20px;
+      text-align: center; /* 페이지 콘텐츠를 가운데 정렬 */
+    }
+
+    table {
+      width: 100%;
+      max-width: 800px; /* 표의 최대 너비 설정 */
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 5px;
+    }
+
+    .btn {
+      background-color: #000;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      margin: 20px auto;
+      cursor: pointer;
+      display: block;
+    }
+
+    .btn:hover {
+      background-color: #555;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      margin-top: 200px;
+    }
+
+    hr {
+
+      width: 1000px;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+  </style>
+</th:block>
+
+<div layout:fragment="content" class="content">
+  <h1>메일 보내기</h1>
+  <hr>
+
+  <form th:action="@{/mail/send}" method="post" enctype="multipart/form-data">
+    <table>
+      <tr class="form-group">
+        <td>보내는 사람</td>
+        <td>
+          <input type="text" class="form-control" name="from" placeholder="이메일 주소를 입력하세요">
+        </td>
+      </tr>
+      <tr id="box" class="form-group">
+        <td>받는 사람</td>
+        <td>
+          <input type="text" class="form-control" name="address" placeholder="이메일 주소를 입력하세요">
+        </td>
+        <td>
+          <input type="button" class="form-control" value="추가" onclick="add_textbox(this)">
+        </td>
+      </tr>
+      <tr id="box2" class="form-group">
+        <td>참조 메일 주소</td>
+        <td>
+          <input type="text" class="form-control" name="ccAddress" placeholder="참조 수신인을 입력하세요">
+        </td>
+        <td>
+          <input type="button" class="form-control" value="추가" onclick="add_textbox2(this)">
+        </td>
+      </tr>
+      <tr class="form-group">
+        <td>제목</td>
+        <td>
+          <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+        </td>
+      </tr>
+      <tr class="form-group">
+        <td>내용</td>
+        <td>
+          <textarea class="form-control" name="content" placeholder="보낼 내용을 입력하세요"></textarea>
+        </td>
+      </tr>
+      <tr class="form-group">
+        <td>첨부 파일</td>
+        <td>
+          <input type="file" name="file" class="form-control" />
+        </td>
+      </tr>
+    </table>
+    <button class="btn">발송</button>
+  </form>
+</div>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+    <link rel="stylesheet" th:href="@{/css/orderHis.css}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        function cancelOrder(orderId) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order/" + orderId + "/cancel";
+            var paramData = {
+                orderId : orderId,
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 취소 되었습니다.");
+                    location.href='/orders/' + [[${page}]];
+                },
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });
+        }
+
+        (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+
+        ChannelIO('boot', {
+            "pluginKey": "3a4eddaa-19bf-49fe-818a-491e4f136159"
+        });
+
+    </script>
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<div layout:fragment="content" class="content-mg">
+    <div id="orderHistory">
+        <div class="container">
+            <h1>구매 내역</h1>
+            <hr class="login-divider">
+            <div class="table-wrapper">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>상품 사진</th>
+                        <th>상품명</th>
+                        <th>상품 가격</th>
+                        <th>카카오페이 결제</th>
+                        <th>구매 일시</th>
+                        <th>취소</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orders.getContent()}">
+                        <td>
+                            <img th:src="${order.orderItemDtoList[0].image}" class="rounded repImg" th:alt="${order.orderItemDtoList[0].title}">
+                        </td>
+                        <td>
+                            <span th:text="${order.orderItemDtoList[0].title}" class="fs24 font-weight-bold"></span>
+                        </td>
+                        <td>
+                            <span th:text="${order.orderItemDtoList[0].orderPrice} + '원'" class="harga"></span>
+                        </td>
+                        <td>
+                            <form th:action="@{'/kakaopay/' + ${order.orderId}}" method="get">
+                                <button type="submit" class="kakaopay-button" aria-label="kakaopay">결제하기</button>
+                            </form>
+                        </td>
+                        <td>
+                            <span th:text="${order.b4Date}" class="pesan"></span>
+                        </td>
+                        <td>
+                            <div th:if="${order.orderStatus == T(com.momento.constant.OrderStatus).COMPLETED}">
+                                <button type="button" class="cancel-button" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
+                            </div>
+                            <div th:unless="${order.orderStatus == T(com.momento.constant.OrderStatus).COMPLETED}">
+                                <h4>취소 완료</h4>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

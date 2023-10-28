@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/orderHis.css}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<div>
+    <ul>
+        <li>
+            <button id="kakaopay-button" clss="kakaopay-button" type="button">결제테스트</button>
+        </li>
+    </ul>
+</div>
+
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("kakaopay-button").addEventListener("click", function() {
+            payment(); // 버튼 클릭하면 호출
+        });
+    });
+
+    // 버튼 클릭하면 실행
+    function payment(data) {
+        IMP.init('imp71557002'); // 아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+        IMP.request_pay({
+            pg: "kakaopay.TC0ONETIME", // pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+            pay_method: "card", // 지불 방법
+            merchant_uid: 'store-b3d9a437-6d28-4878-92a7-b1e86f121ac511' + new Date().getTime(),
+            name: "momento",
+            amount: 10000, // 금액
+            buyer_email: "testiamport@naver.com",
+            buyer_name: "홍길동",
+            buyer_tel: "01012341234"
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                alert('결제가 완료되었습니다.');
+            } else {
+                alert("결제가 실패했습니다");
+            }
+        });
+    }
+</script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+</body>
+</html>

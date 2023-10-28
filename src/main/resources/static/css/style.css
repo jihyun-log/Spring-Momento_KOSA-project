@@ -1,0 +1,1378 @@
+@import url(./reset.css);
+@import url(./fonts.css);
+#skip {
+  width: 100%;
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+}
+#skip ul {
+  width: 100%;
+}
+#skip ul li {
+  width: 100%;
+}
+#skip ul li a {
+  display: block;
+  line-height: 0;
+  font-size: 0;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+#skip ul li a:focus {
+  line-height: 50px;
+  font-size: 20px;
+}
+
+#wrap {
+  width: 100%;
+  position: relative;
+}
+#wrap #header {
+  width: 100%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+#wrap #header .top {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #eaeaea;
+}
+#wrap #header .top .container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#wrap #header .top .container .gap {
+  margin: 0;
+  width: 100%;
+}
+#wrap #header .top .container .gap .wrap {
+  width: 100%;
+}
+#wrap #header .top .container .gap .wrap .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 15px;
+  height: 100%;
+}
+#wrap #header .top .container .gap .wrap .left .lang {
+  width: 85px;
+  height: 25px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  font-family: "Montserrat";
+}
+#wrap #header .top .container .gap .wrap .left .lang a.kor {
+  display: block;
+  padding: 0 10px;
+  font-size: 11px;
+  height: 25px;
+  line-height: 25px;
+  background: url(../img/lang_arr.gif) no-repeat 65px center;
+}
+#wrap #header .top .container .gap .wrap .left .lang a.kor img {
+  width: auto;
+  height: auto;
+  margin: 0 7px 2px 0;
+}
+#wrap #header .top .container .gap .wrap .left .lang ul {
+  display: none;
+}
+#wrap #header .top .container .gap .wrap .left .lang ul li {
+  width: 100%;
+}
+#wrap #header .top .container .gap .wrap .left .lang ul li a {
+  display: block;
+  padding: 0 10px;
+  font-size: 11px;
+  height: 13px;
+  line-height: 13px;
+}
+#wrap #header .top .container .gap .wrap .left .lang ul li a img {
+  width: auto;
+  height: auto;
+  margin: 0 7px 2px 0;
+}
+#wrap #header .top .container .gap .wrap .left .lang.on {
+  height: 45px;
+}
+#wrap #header .top .container .gap .wrap .left .sns-box {
+  position: absolute;
+  top: 0;
+  left: 90px;
+}
+#wrap #header .top .container .gap .wrap .left .sns-box ul {
+  width: 100%;
+  display: flex;
+}
+#wrap #header .top .container .gap .wrap .left .sns-box ul li {
+  margin: 0 0 0 7px;
+}
+#wrap #header .top .container .gap .wrap .left .sns-box ul li a {
+  display: block;
+}
+#wrap #header .top .container .gap .wrap .left .sns-box ul li a img {
+  width: auto;
+}
+#wrap #header .top .container .gap .wrap .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#wrap #header .top .container .gap .wrap .right ul {
+  width: 100%;
+  display: flex;
+  line-height: 57px;
+}
+#wrap #header .top .container .gap .wrap .right ul li a {
+  color: #9b9a9a;
+  font-size: 11px;
+  font-family: "Montserrat";
+}
+#wrap #header .top .container .gap .wrap .right ul li i {
+  color: #eaeaea;
+  font-size: 5px;
+  margin: 0 10px;
+  vertical-align: baseline;
+}
+#wrap #header .bottom {
+  width: 100%;
+  height: 89px;
+  background: #fff;
+}
+#wrap #header .bottom .container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#wrap #header .bottom .container .gap {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+#wrap #header .bottom .container .gap .wrap {
+  width: 100%;
+  height: 100%;
+}
+#wrap #header .bottom .container .gap .wrap .logo {
+  width: 160px;
+  height: 89px;
+  margin: auto 0;
+
+}
+
+#wrap #header .bottom .container .gap .wrap .logo a img {
+  width: 89px;
+  height: 89px;
+  margin: 0 100px;
+}
+
+#wrap #header .bottom .container .gap .wrap #nav {
+  width: 1000px;
+  height: 100%;
+  line-height: 89px;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 16%;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul {
+  width: 100%;
+  display: flex;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li {
+  width: 100%;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li > a {
+  display: block;
+  font-size: 17px;
+  line-height: 89px;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li > a:hover {
+  color: #c40f39;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub {
+  width: 100%;
+  display: none;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub ul {
+  width: 100%;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub ul li {
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub ul li:last-child {
+  border: 0;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub ul li a {
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #6e6e6e;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #header .bottom .container .gap .wrap #nav > ul > li .sub ul li a:hover {
+  color: #c40f39;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 89px;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a {
+  display: block;
+  width: 20px;
+  margin: auto 40px auto auto;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a i {
+  display: block;
+  font-size: 20px;
+  line-height: 89px;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all {
+  width: 15px;
+  height: 15px;
+  display: block;
+  margin: -53px 0 auto auto;
+  position: relative;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all span {
+  display: block;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all span .line1 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all span .line2 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -1px;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all span .line3 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: -1px;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all.on .line1 {
+  transform: translateY(7px) rotate(45deg);
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all.on .line2 {
+  opacity: 0;
+}
+#wrap #header .bottom .container .gap .wrap .icon-box a.all.on .line3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+#wrap #header .bottom .container .gap .wrap .all-menu {
+  width: 1400px;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  padding: 50px 30px;
+  display: none;
+}
+#wrap #header .bottom .container .gap .wrap .all-menu > ul {
+  width: 100%;
+  display: flex;
+}
+#wrap #header .bottom .container .gap .wrap .all-menu > ul > li {
+  width: 100%;
+  border-right: 1px solid #eee;
+  margin: 0 15px;
+}
+#wrap #header .bottom .container .gap .wrap .all-menu > ul > li:last-child {
+  border: 0;
+}
+#wrap #header .bottom .container .gap .wrap .all-menu > ul > li > a {
+  font-size: 21px;
+  color: #303030;
+  font-weight: 500;
+}
+#wrap #header .bottom .container .gap .wrap .all-menu > ul > li > a::after {
+  content: "";
+  display: block;
+  width: 19px;
+  height: 2px;
+  background: #c40f39;
+  margin: 20px 0;
+}
+#wrap #main {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+#wrap #main #section1 {
+  width: 100%;
+  position: relative;
+}
+#wrap #main #section1 .slide-container {
+  width: 100%;
+  position: relative;
+}
+#wrap #main #section1 .slide-container .slide-view {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 100px;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap {
+  width: 500%;
+  display: flex;
+  margin-left: -100%;
+  left: 0;
+  position: relative;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide .caption {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 13.13715%;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide .caption h2 {
+  font-size: 3.125rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 120%;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide .caption i {
+  display: block;
+  width: 5vw;
+  height: 1px;
+  background: #fff;
+  margin: 30px 0;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide .caption p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 140%;
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url() no-repeat 50% 50%;
+  background-size: cover;
+  filter: brightness(50%) contrast(90%);
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide.slide1::before {
+  background-image: url(../img/slide1.jpg);
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide.slide2::before {
+  background-image: url(../img/slide2.jpg);
+}
+#wrap #main #section1 .slide-container .slide-view .slide-wrap .slide.slide3::before {
+  background-image: url(../img/slide3.jpg);
+}
+#wrap #main #section1 .slide-container .next-btn-box {
+  position: absolute;
+  z-index: 2;
+  top: 55%;
+  right: 20px;
+  margin-top: -50px;
+}
+#wrap #main #section1 .slide-container .next-btn-box a {
+  display: block;
+  color: #fff;
+  display: flex;
+}
+#wrap #main #section1 .slide-container .next-btn-box a i {
+  font-size: 80px;
+  margin: auto;
+}
+#wrap #main #section1 .slide-container .prev-btn-box {
+  position: absolute;
+  z-index: 2;
+  top: 55%;
+  left: 20px;
+  margin-top: -50px;
+}
+#wrap #main #section1 .slide-container .prev-btn-box a {
+  display: block;
+  color: #fff;
+  display: flex;
+}
+#wrap #main #section1 .slide-container .prev-btn-box a i {
+  font-size: 80px;
+  margin: auto;
+}
+#wrap #main #section1 .slide-container .page-btn-box {
+  width: 100%;
+  height: 12px;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+}
+#wrap #main #section1 .slide-container .page-btn-box span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 7px;
+}
+#wrap #main #section1 .slide-container .page-btn-box span a {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  outline: 2px solid rgba(255, 255, 255, 0);
+  box-sizing: content-box;
+  transition: all 0.3s;
+}
+#wrap #main #section1 .slide-container .page-btn-box span a.on {
+  background: rgba(255, 255, 255, 0);
+  outline: 2px solid rgb(255, 255, 255);
+}
+#wrap #main #section1 .slide-container .page-btn-box span:last-child a {
+  border-radius: 0;
+  background: none;
+  width: 12px;
+  height: 12px;
+  position: relative;
+}
+#wrap #main #section1 .slide-container .page-btn-box span:last-child a i {
+  color: #fff;
+  font-size: 13px;
+  position: absolute;
+  top: -1.5px;
+  left: 0;
+}
+#wrap #main #section2 {
+  width: 100%;
+  padding: 100px 0;
+  overflow: hidden;
+}
+#wrap #main #section2 .container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #main #section2 .container .gap {
+  width: 100%;
+  margin: 0;
+}
+#wrap #main #section2 .container .gap .wrap {
+  width: 100%;
+}
+#wrap #main #section2 .container .gap .wrap .title {
+  text-align: center;
+}
+#wrap #main #section2 .container .gap .wrap .title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  font-family: "Montserrat";
+  letter-spacing: 2px;
+  text-align: center;
+}
+#wrap #main #section2 .container .gap .wrap .title h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  margin: 10px auto;
+  background: #c40f39;
+}
+#wrap #main #section2 .container .gap .wrap .title h3 {
+  font-size: 13px;
+  color: #6e6e6e;
+  margin-bottom: 40px;
+}
+#wrap #main #section2 .container .gap .wrap .content {
+  width: 100%;
+}
+#wrap #main #section2 .container .gap .wrap .content ul {
+  width: 100%;
+  display: flex;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li {
+  width: 25%;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap {
+  width: auto;
+  margin: 0 15px;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap {
+  width: 100%;
+  position: relative;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .front-face {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  transform: perspective(600px) rotateY(0deg);
+  transition: all 0.6s ease-in-out;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .front-face a img {
+  width: 100%;
+  outline: 5px solid rgba(255, 255, 255, 0.7);
+  outline-offset: -20px;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .back-face {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, #B2EBF4 20%, #FFD9EC 80%);
+  transform: perspective(600px) rotateY(180deg);
+  transition: all 0.6s ease-in-out;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .back-face .caption {
+  text-align: center;
+  padding: 50px;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .back-face .caption h3 {
+  color: #000;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 12px;
+  font-style: italic;
+  text-decoration: underline;
+  letter-spacing: 2px;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .back-face .caption h2 {
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 8px 0 15px 0;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap .back-face .caption p {
+  font-family: "Montserrat";
+  line-height: 120%;
+  color: #3d3e38;
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap.on .front-face {
+  transform: perspective(600px) rotateY(-180deg);
+}
+#wrap #main #section2 .container .gap .wrap .content ul li .col-gap .col-wrap.on .back-face {
+  transform: perspective(600px) rotateY(0deg);
+}
+#wrap #main #section3 {
+  width: 100%;
+  padding: 100px 0;
+  background: #eee;
+  overflow: hidden;
+}
+#wrap #main #section3 .container {
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #main #section3 .container .gap .wrap .title {
+  text-align: center;
+}
+#wrap #main #section3 .container .gap .wrap .title h2 {
+  font-family: "Montserrat";
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+#wrap #main #section3 .container .gap .wrap .title h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  margin: 10px auto;
+  background: #c40f39;
+}
+#wrap #main #section3 .container .gap .wrap .title h3 {
+  color: #555;
+  font-size: 13.5px;
+}
+#wrap #main #section3 .container .gap .wrap .select-box {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+}
+#wrap #main #section3 .container .gap .wrap .select-box ul {
+  width: 100%;
+}
+#wrap #main #section3 .container .gap .wrap .select-box ul li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+#wrap #main #section3 .container .gap .wrap .select-box ul li a {
+  display: block;
+  width: 153px;
+  height: 32px;
+  text-align: center;
+  line-height: 28px;
+  border: 2px solid #bcbcbc;
+  color: #898989;
+}
+#wrap #main #section3 .container .gap .wrap .select-box ul li a.on {
+  border: 2px solid #c40f39;
+  color: #c40f39;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 {
+  width: 720%;
+  position: relative;
+  display: flex;
+  margin-left: -180%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide {
+  width: 20%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide a {
+  display: block;
+  margin: 0 15px 0 0;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide a img {
+  width: 266px;
+  height: 390px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide a .info {
+  height: 102px;
+  background: #fff;
+  padding: 30px;
+  text-align: left;
+  font-family: "Montserrat";
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide a .info h4 {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .slide-view .slide-wrap.wrap1 .slide a .info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-prev-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-prev-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-prev-box a i {
+  font-size: 50px;
+  margin-left: 13px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-next-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-next-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container1 .sec3-next-box a i {
+  font-size: 50px;
+  margin-left: 18px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  display: none;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 {
+  width: 800%;
+  position: relative;
+  display: flex;
+  margin-left: -200%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide {
+  width: 20%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide a {
+  display: block;
+  margin: 0 15px 0 0;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide a img {
+  width: 266px;
+  height: 390px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide a .info {
+  height: 102px;
+  background: #fff;
+  padding: 30px;
+  text-align: left;
+  font-family: "Montserrat";
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide a .info h4 {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .slide-view .slide-wrap.wrap2 .slide a .info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-prev-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-prev-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-prev-box a i {
+  font-size: 50px;
+  margin-left: 13px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-next-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-next-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container2 .sec3-next-box a i {
+  font-size: 50px;
+  margin-left: 18px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  display: none;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 {
+  width: 440%;
+  position: relative;
+  display: flex;
+  margin-left: -100%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide {
+  width: 20%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide a {
+  display: block;
+  margin: 0 15px 0 0;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide a img {
+  width: 266px;
+  height: 390px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide a .info {
+  height: 102px;
+  background: #fff;
+  padding: 30px;
+  text-align: left;
+  font-family: "Montserrat";
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide a .info h4 {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .slide-view .slide-wrap.wrap3 .slide a .info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-prev-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-prev-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-prev-box a i {
+  font-size: 50px;
+  margin-left: 13px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-next-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-next-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container3 .sec3-next-box a i {
+  font-size: 50px;
+  margin-left: 18px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  display: none;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 {
+  width: 440%;
+  position: relative;
+  display: flex;
+  margin-left: -100%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide {
+  width: 20%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide a {
+  display: block;
+  margin: 0 15px 0 0;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide a img {
+  width: 266px;
+  height: 390px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide a .info {
+  height: 102px;
+  background: #fff;
+  padding: 30px;
+  text-align: left;
+  font-family: "Montserrat";
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide a .info h4 {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .slide-view .slide-wrap.wrap4 .slide a .info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-prev-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-prev-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-prev-box a i {
+  font-size: 50px;
+  margin-left: 13px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-next-box {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -140px;
+  margin-top: 200px;
+  width: 56px;
+  height: 50px;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-next-box a {
+  display: block;
+  color: #bcbcbc;
+  border: 3px solid #bcbcbc;
+  border-radius: 50%;
+}
+#wrap #main #section3 .container .gap .wrap .slide-container.container4 .sec3-next-box a i {
+  font-size: 50px;
+  margin-left: 18px;
+}
+#wrap #main #section4 {
+  width: 100%;
+  overflow: hidden;
+}
+#wrap #main #section4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#wrap #main #section5 {
+  width: 100%;
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+}
+#wrap #main #section5 .container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+#wrap #main #section5 .container .gap {
+  width: 100%;
+  margin: 0;
+}
+#wrap #main #section5 .container .gap .wrap {
+  width: 100%;
+  display: flex;
+}
+#wrap #main #section5 .container .gap .wrap .left {
+  padding: 45px 45px 30px 0;
+  width: 705px;
+  height: 100%;
+}
+#wrap #main #section5 .container .gap .wrap .left .title {
+  position: relative;
+  margin-bottom: 15px;
+}
+#wrap #main #section5 .container .gap .wrap .left .title h2 {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+}
+#wrap #main #section5 .container .gap .wrap .left .title h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  background: #c40f39;
+  margin-top: 5px;
+}
+#wrap #main #section5 .container .gap .wrap .left .title a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 11px;
+  color: #3d3e38;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #3d3e38;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li {
+  position: relative;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li a img {
+  width: 164px;
+  height: 116px;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li a h4 {
+  color: #555;
+  font-size: 13.5px;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li a h4:hover {
+  color: #c40f39;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li .txt {
+  position: absolute;
+  top: 10px;
+  left: 30%;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li .txt a h3 {
+  font-size: 21px;
+  transition: all 0.3s ease-in-out;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li .txt a h3:hover {
+  color: #c40f39;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li .txt a p {
+  margin-top: 10px;
+  line-height: 150%;
+  color: #555;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li h5 {
+  color: #888;
+  font-size: 13.5px;
+  text-align: right;
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 13.5px;
+  color: #888;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li:first-child {
+  border-bottom: 1px solid #bbb;
+  padding: 10px 0 20px 0;
+  margin-bottom: 20px;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li:first-child span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#wrap #main #section5 .container .gap .wrap .left .content ul li:nth-child(2), #wrap #main #section5 .container .gap .wrap .left .content ul li:nth-child(3), #wrap #main #section5 .container .gap .wrap .left .content ul li:nth-child(4) {
+  line-height: 23px;
+}
+#wrap #main #section5 .container .gap .wrap .center {
+  width: 349px;
+  height: 355px;
+  background: url(../img/section5_1bg.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  text-align: center;
+}
+#wrap #main #section5 .container .gap .wrap .center ul {
+  width: 100%;
+  padding: 70px 40px 40px 40px;
+}
+#wrap #main #section5 .container .gap .wrap .center ul li img {
+  width: auto;
+}
+#wrap #main #section5 .container .gap .wrap .center ul li h2 {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+#wrap #main #section5 .container .gap .wrap .center ul li h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  background: #c40f39;
+  margin: 15px auto;
+}
+#wrap #main #section5 .container .gap .wrap .center ul li p {
+  font-size: 13.5px;
+  line-height: 160%;
+  color: #6a6a6a;
+  margin-bottom: 45px;
+}
+#wrap #main #section5 .container .gap .wrap .center ul a {
+  display: block;
+  width: 167px;
+  height: 35px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 33px;
+  font-family: "Montserrat";
+  color: #c40f39;
+  font-weight: 500;
+  border: 2px solid #c40f39;
+  font-size: 13.5px;
+  transition: all 0.6s ease-in-out;
+}
+#wrap #main #section5 .container .gap .wrap .center ul a:hover {
+  background: #c40f39;
+  color: #fff;
+}
+#wrap #main #section5 .container .gap .wrap .right {
+  width: 349px;
+  height: 355px;
+  background: url(../img/section5_2bg_s.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+#wrap #main #section5 .container .gap .wrap .right ul {
+  width: 100%;
+  padding: 70px 40px 40px 40px;
+}
+#wrap #main #section5 .container .gap .wrap .right ul li img {
+  width: auto;
+}
+#wrap #main #section5 .container .gap .wrap .right ul li h2 {
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+#wrap #main #section5 .container .gap .wrap .right ul li h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  background: #c40f39;
+  margin: 15px auto;
+}
+#wrap #main #section5 .container .gap .wrap .right ul li p {
+  font-size: 13.5px;
+  line-height: 160%;
+  color: #6a6a6a;
+  margin-bottom: 45px;
+}
+#wrap #main #section5 .container .gap .wrap .right ul a {
+  display: block;
+  width: 167px;
+  height: 35px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 33px;
+  font-family: "Montserrat";
+  color: #c40f39;
+  font-weight: 500;
+  border: 2px solid #c40f39;
+  font-size: 13.5px;
+  transition: all 0.6s ease-in-out;
+}
+#wrap #main #section5 .container .gap .wrap .right ul a:hover {
+  background: #c40f39;
+  color: #fff;
+}
+#wrap #footer {
+  width: 100%;
+  position: relative;
+  z-index: 4;
+  background: #111;
+  padding: 60px 0;
+}
+#wrap #footer .container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#wrap #footer .container .gap {
+  width: 100%;
+  margin: 0;
+}
+#wrap #footer .container .gap .wrap {
+  width: 100%;
+}
+#wrap #footer .container .gap .wrap .top {
+  width: 100%;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#wrap #footer .container .gap .wrap .top a img {
+  width: 80px;
+  height: 80px;
+  margin: 0 50px;
+}
+#wrap #footer .container .gap .wrap .top ul {
+  width: auto;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#wrap #footer .container .gap .wrap .top ul li a {
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 32px;
+  transition: all 0.3s ease-in-out;
+  margin right: 10px;
+}
+#wrap #footer .container .gap .wrap .top ul li a span {
+  display: block;
+}
+#wrap #footer .container .gap .wrap .top ul li a:hover {
+  color: #c40f39;
+}
+#wrap #footer .container .gap .wrap .top ul li i {
+  color: #303030;
+  font-size: 11px;
+  margin: 0 10px;
+  display: block;
+  line-height: 32px;
+}
+#wrap #footer .container .gap .wrap .bottom {
+  width: 100%;
+  margin-top: 25px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul {
+  width: 100%;
+  display: flex;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li {
+  width: 33.333%;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li .col-gap .col-wrap h3 {
+  font-family: "Montserrat";
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li .col-gap .col-wrap address {
+  font-size: 13.5px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 18px;
+  margin-left: 10px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li .col-gap .col-wrap address i {
+  padding: 0 10px;
+  font-size: 11px;
+  display: inline-block;
+  line-height: 18px;
+  margin-bottom: 3px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li .col-gap .col-wrap p {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 18px;
+  margin-left: 10px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li .col-gap .col-wrap h2 {
+  font-family: "Montserrat";
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.5);
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li:first-child {
+  width: 550px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li:nth-child(2) .col-gap {
+  margin: 0 30px;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li.family-site {
+  width: 242px;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0 0 auto auto;
+  position: relative;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li.family-site .col-gap .col-wrap > a {
+  display: block;
+  padding: 0 13px;
+  color: rgba(255, 255, 255, 0.4);
+  height: 35px;
+  line-height: 35px;
+  font-size: 13px;
+  background: url(../img/family_arr.png) no-repeat 95% center;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li.family-site .col-gap .col-wrap ul.site-list {
+  width: 100%;
+  position: absolute;
+  bottom: 100%;
+  left: -1px;
+  width: 242px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: none;
+}
+#wrap #footer .container .gap .wrap .bottom > ul > li.family-site .col-gap .col-wrap ul.site-list li a {
+  display: block;
+  padding: 0 13px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+#wrap #goTop {
+  position: fixed;
+  z-index: 5;
+  bottom: 50px;
+  right: 50px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+#wrap #goTop a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+#wrap #goTop a i {
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  padding-top: 8px;
+}

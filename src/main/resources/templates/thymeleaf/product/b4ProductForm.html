@@ -1,0 +1,229 @@
+<!--정용준, 정일채: 이 HTML 코드는 Thymeleaf를 사용한 웹 페이지로, 상품 판매 신청서를 입력하고 제출하는 폼입니다.-->
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/layouts/layout1}">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Form</title>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <link rel="stylesheet" th:href="@{/css/upload.css}"/>
+</head>
+
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+  <script th:inline="javascript">
+    $(document).ready(function(){
+      var errorMessage = [[${errorMessage}]];
+      if(errorMessage != null){
+        alert(errorMessage);
+      }
+
+      bindDomEvent();
+
+    });
+
+    function bindDomEvent(){
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();  // 이미지 파일명
+        var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+        fileExt = fileExt.toLowerCase(); // 소문자 변환
+
+        if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+          alert("이미지 파일만 등록이 가능합니다.");
+          return;
+        }
+
+        $(this).siblings(".custom-file-label").html(fileName);
+      });
+    }
+
+  </script>
+
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+  <style>
+    .fieldError {
+      color: #bd2130;
+    }
+  </style>
+</th:block>
+
+<div layout:fragment="content">
+
+  <form role="form" method="post" enctype="multipart/form-data" th:object="${productFormDto}">
+
+    <div class="container">
+      <h1>상품 판매 신청서</h1>
+      <hr class="login-divider">
+
+      <input type="hidden" th:field="*{id}">
+
+      <div class="form-group" style="display: none;">
+        <select th:field="*{productSellStatus}" class="custom-select">
+          <option value="PENDING" selected>등록 대기</option>
+          <option value="SELL">판매중</option>
+          <option value="SOLD_OUT">품절</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">테마</span>
+        </div>
+        <select th:field="*{productTheme}" class="form-control">
+          <option value="">테마를 선택하세요</option>
+          <option value="ANIME">애니메이션</option>
+          <option value="HOLIDAY">홀리데이 코스튬</option>
+          <option value="VINTAGE">빈티지</option>
+          <option value="WEDDING">웨딩</option>
+          <option value="TRAD_COSTUME">전통의상</option>
+          <option value="ETC">기타</option>
+        </select>
+      </div>
+      <p th:if="${#fields.hasErrors('productTheme')}" th:errors="*{productTheme}" class="fieldError">잘못된 데이터입니다</p>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">상품명</span>
+        </div>
+        <input type="text" th:field="*{b4Title}" class="form-control" placeholder="상품명을 입력해주세요" id="b4TitleInput">
+      </div>
+      <div class="input-group">
+        <input type="hidden" th:field="*{title}" class="form-control" placeholder="상품명을 입력해주세요" id="titleInput">
+      </div>
+      <p th:if="${#fields.hasErrors('b4Title')}" th:errors="*{b4Title}" class="fieldError">Incorrect data</p>
+
+      <script>
+        // 이벤트 핸들러를 사용하여 b4TitleInput의 내용을 titleInput으로 복사
+        document.getElementById('b4TitleInput').addEventListener('input', function () {
+          document.getElementById('titleInput').value = this.value;
+        });
+
+        // 이벤트 핸들러를 사용하여 titleInput의 내용을 b4TitleInput으로 복사
+        document.getElementById('titleInput').addEventListener('input', function () {
+          document.getElementById('b4TitleInput').value = this.value;
+        });
+      </script>
+
+      <div class="input-group">
+        <input type="hidden" th:field="*{stockNumber}" class="form-control" placeholder="상품의 수량을 입력해주세요" id="stockNumberInput">
+      </div>
+      <p th:if="${#fields.hasErrors('stockNumber')}" th:errors="*{stockNumber}" class="fieldError">Incorrect data</p>
+
+      <script>
+        // JavaScript를 사용하여 기본값 설정
+        document.addEventListener("DOMContentLoaded", function() {
+          var stockNumberInput = document.getElementById("stockNumberInput");
+          if (stockNumberInput) {
+            stockNumberInput.value = 1; // 1을 기본값으로 설정
+          }
+        });
+      </script>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">신청일</span>
+        </div>
+        <input type="datetime-local" th:field="*{b4Date}" class="form-control" id="purchaseDate">
+      </div>
+      <p th:if="${#fields.hasErrors('b4Date')}" th:errors="*{b4Date}" class="fieldError">Incorrect data</p>
+
+      <script th:inline="javascript">
+        // JavaScript를 사용하여 현재 날짜 및 시간을 생성
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리 숫자로 포맷
+        var day = now.getDate().toString().padStart(2, '0');
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var currentDateTime = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+
+        // 생성된 현재 날짜 및 시간을 입력란의 기본값으로 설정
+        document.getElementById("purchaseDate").value = currentDateTime;
+      </script>
+
+      <input type="hidden" th:field="*{createdBy}" class="form-control" placeholder="판매자아이디를 입력해주세요">
+
+      <p th:if="${#fields.hasErrors('createdBy')}" th:errors="*{createdBy}" class="fieldError">Incorrect data</p>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">인스타아이디</span>
+        </div>
+        <input type="text" th:field="*{b4InstaId}" class="form-control" placeholder="인스타아이디를 입력해주세요">
+      </div>
+      <p th:if="${#fields.hasErrors('b4InstaId')}" th:errors="*{b4InstaId}" class="fieldError">Incorrect data</p>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">상품 상세 내용</span>
+        </div>
+        <textarea class="form-control" aria-label="With textarea" th:field="*{b4Description}"></textarea>
+      </div>
+      <p th:if="${#fields.hasErrors('b4Description')}" th:errors="*{b4Description}" class="fieldError">Incorrect data</p>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">판매 희망가격</span>
+        </div>
+        <input type="number" th:field="*{b4Price}" class="form-control" placeholder="매입가격을 입력해주세요">
+      </div>
+      <p th:if="${#fields.hasErrors('b4Price')}" th:errors="*{b4Price}" class="fieldError">Incorrect data</p>
+
+      <input type="hidden" th:field="*{date}" class="form-control" id="uploadDate">
+
+      <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="fieldError">Incorrect data</p>
+
+      <script th:inline="javascript">
+        // JavaScript를 사용하여 현재 날짜 및 시간을 생성
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리 숫자로 포맷
+        var day = now.getDate().toString().padStart(2, '0');
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var currentDateTime = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+
+        // 생성된 현재 날짜 및 시간을 입력란의 기본값으로 설정
+        document.getElementById("uploadDate").value = currentDateTime;
+      </script>
+
+      <!-- 이미지 업로드 필드 -->
+      <div th:if="${#lists.isEmpty(productFormDto.imageDtoList)}">
+        <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
+          <div class="custom-file img-div">
+            <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+            <input type="file" class="custom-file-input" name="imageFile">
+          </div>
+        </div>
+      </div>
+
+      <div th:if="${not #lists.isEmpty(productFormDto.imageDtoList)}">
+        <div class="form-group" th:each="imageDto, status: ${productFormDto.imageDtoList}">
+          <div class="custom-file img-div">
+            <input type="file" class="custom-file-input" th:name="imageFile">
+            <input type="hidden" th:name="imageIds" th:value="${imageDto.id}">
+            <label class="custom-file-label" th:text="${not #strings.isEmpty(imageDto.oriImgName)} ? ${imageDto.oriImgName} : '상품 이미지' + ${status.index + 1}"></label>
+          </div>
+        </div>
+      </div>
+      <!-- 등록/수정 버튼 -->
+      <div th:if="${#strings.isEmpty(productFormDto.id)}" style="text-align: center">
+        <button th:formaction="@{/user/product/new}" type="submit" class="btn btn-primary">신청하기</button>
+      </div>
+      <div th:unless="${#strings.isEmpty(productFormDto.id)}" style="text-align: center">
+        <button th:formaction="@{'/user/product/' + ${productFormDto.id}}" type="submit" class="btn btn-primary">수정</button>
+      </div>
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </div>
+  </form>
+</div>
+
+</html>

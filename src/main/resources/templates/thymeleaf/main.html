@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momento</title>
+    <link rel="stylesheet" th:href="@{/css/style_backup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/response.css}"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" />
+    <script th:src="@{/js/lib/jquery-1.12.4.min.js}"></script>
+    <script th:src="@{/js/lib/jquery.easing.1.3.js}"></script>
+</head>
+<body>
+<div id="skip">
+    <ul>
+        <li><a href="#header">메뉴 바로가기</a></li>
+        <li><a href="#main">메인 바로가기</a></li>
+        <li><a href="#footer">하단 바로가기</a></li>
+    </ul>
+</div>
+<div id="wrap">
+    <header id="header" th:fragment="header">
+        <div class="top">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="left">
+                            <div class="lang">
+                                <a href="#" class="kor"><img src="/img/lang_kor.gif" alt="">KOR</a>
+                                <ul class="lang-list">
+                                    <li><a href="#"><img src="/img/lang_eng.gif" alt="">ENG</a></li>
+                                </ul>
+                            </div>
+                            <div class="sns-box">
+                                <ul>
+                                    <li><a href="https://ko-kr.facebook.com/" title="페이스북"><img src="/img/sns_facebook.gif" alt="facebook"></a></li>
+                                    <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%EB%83%85%EC%82%AC%EC%A7%84/" title="인스타그램"><img src="/img/sns_insta.gif" alt="instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li class="nav-product" sec:authorize="isAnonymous()">
+                                    <a class="nav-link" href="/members/login">LOGIN</a>
+                                <li><i>|</i></li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="/members/logout">LOGOUT <i>|</i></a>
+                                <li><a href="https://naver.me/xn6PvLTD" title="SITE MAP">SITE MAP</a></li>
+                                <li><i>|</i></li>
+                                <li><a href="#footer" title="CONTACT US">CONTACT US</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="logo">
+                            <a href="/"><img src="/img/logo.png" alt=""></a>
+                        </div>
+                        <nav id="nav">
+                            <ul>
+                                <li>
+                                    <a href="/history" title="회사소개" class="main-btn">회사소개</a>
+                                </li>
+                                <li>
+                                    <a href="/product" title="제품" class="main-btn">THEME</a>
+                                    <div class="sub sub2">
+                                        <ul>
+                                            <li><a href="/anime" title="애니메이션">애니메이션</a></li>
+                                            <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                            <li><a href="/vintage" title="빈티지">빈티지</a></li>
+                                            <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                            <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                            <li><a href="/etc" title="기타">기타</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="openChatPopup()">실시간 채팅</a>
+                                </li>
+
+                                <script>
+                                    function openChatPopup() {
+                                        var popupWidth = 600;
+                                        var popupHeight = 700;
+                                        var left = (screen.width - popupWidth) / 2;
+                                        var top = (screen.height - popupHeight) / 2;
+
+                                        // 주소 입력창 없이 팝업 창 열기
+                                        var chatPopup = window.open("/room", "ChatPopup", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top + ",location=0,menubar=0,toolbar=0,status=0");
+
+                                        // 팝업 창이 이미 열려 있는 경우에 대한 처리
+                                        if (chatPopup) {
+                                            chatPopup.focus();
+                                        } else {
+                                            alert("팝업 창이 차단되었거나 브라우저가 팝업 창을 지원하지 않습니다.");
+                                        }
+                                    }
+                                </script>
+                                <li class="main-btn" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="/cart">장바구니</a>
+                                </li>
+                                <div class="sub sub4">
+                                </div>
+                                <li>
+                                    <a href="/orders" title="MY PAGE" class="main-btn">MY PAGE</a>
+                                    <div class="sub sub5">
+                                        <ul>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/orders">구매 이력</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="icon-box">
+                            <form id="search-form" class="form-inline my-2 my-lg-0" th:action="@{/product}" method="get">
+                                <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <a href="#" title="검색" id="search-button"><i class="fa fa-search"></i></a>
+                            <a href="#" class="all" title="전체메뉴">
+                  <span class="all-btn">
+                    <i class="line1"></i>
+                    <i class="line2"></i>
+                    <i class="line3"></i>
+                  </span>
+                            </a>
+                        </div>
+                        <div class="all-menu">
+                            <ul>
+                                <li>
+                                    <a href="/history" title="회사소개" class="sub-title">회사소개</a>
+                                    <div class="all-sub sub1">
+                                        <ul>
+                                            <li><a href="/history" title="회사정보">회사정보</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/product" title="제품" class="sub-title">THEME</a>
+                                    <div class="all-sub sub2">
+                                        <ul>
+                                            <li><a href="/wedding" title="애니메이션">애니메이션</a></li>
+                                            <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                            <li><a href="/vintage#" title="빈티지">빈티지</a></li>
+                                            <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                            <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                            <li><a href="/etc" title="기타">기타</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="openChatPopup()">실시간 채팅</a>
+                                    <div class="all-sub sub3">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/cart" title="장바구니" class="sub-title" sec:authorize="isAuthenticated()">장바구니</a>
+                                    <div class="all-sub sub4">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/orders" title="MY PAGE" class="sub-title">MY PAGE</a>
+                                    <div class="all-sub sub5">
+                                        <ul>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/orders">구매 이력</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <section id="section1">
+            <div class="slide-container">
+                <div class="slide-view">
+                    <ul class="slide-wrap">
+                        <li class="slide slide3">
+                            <div class="caption">
+                                <h2>우리는 꿈을 그려나가며<br>더 나은 미래를<br>만들고자 노력합니다.</h2>
+                                <i></i>
+                                <p>어떻게 하면 더 좋은 제품을 만들 수 있을지,<br>더 나은 기업이 될 수 있을지 고민합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide1">
+                            <div class="caption">
+                                <h2>어쩌면 사진은<br>인생이라는 종이 위에<br>써 내려가는<br>펜의 기록 같습니다.</h2>
+                                <i></i>
+                                <p>그 중에서도 지우고 싶지 않은 기록이 있습니다.<br>모멘토은 언제나 당신의 행복한 기록과 함께 합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide2">
+                            <div class="caption">
+                                <h2>우리의 추억을<br>하나의 사진에 담기 위해<br>오늘도 달립니다.</h2>
+                                <i></i>
+                                <p>찰나의 순간을 사진에 담아 드립니다.<br>모멘토는 그 꿈과 함께 합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide3">
+                            <div class="caption">
+                                <h2>우리는 꿈을 그려나가며<br>더 나은 미래를<br>만들고자 노력합니다.</h2>
+                                <i></i>
+                                <p>어떻게 하면 더 좋은 사진을 만들 수 있을지,<br>더 좋은 착장을 고민합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide1">
+                            <div class="caption">
+                                <h2>어쩌면 사진은<br>인생이라는 종이 위에<br>써 내려가는<br>펜의 기록 같습니다.</h2>
+                                <i></i>
+                                <p>그 중에서도 지우고 싶지 않은 기록이 있습니다.<br>모나미는 언제나 당신의 행복한 기록과 함께 합니다.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="next-btn-box">
+                    <a href="#" class="next-btn"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="prev-btn-box">
+                    <a href="#" class="prev-btn"><i class="fa fa-angle-left"></i></a>
+                </div>
+                <div class="page-btn-box">
+                    <span><a href="#" class="page-btn on"></a></span>
+                    <span><a href="#" class="page-btn"></a></span>
+                    <span><a href="#" class="page-btn"></a></span>
+                    <span><a href="#" class="pause-btn"><i class="fa fa-pause"></i></a></span>
+                </div>
+            </div>
+        </section>
+        <section id="section2">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="title">
+                            <h2>NEW<br>ARRIVALS</h2>
+                            <h3>가장 먼저 만나는 설레는 기다림</h3>
+                        </div>
+                        <div class="content">
+                            <ul>
+                                <li>
+                                    <div class="col-gap">
+                                        <div class="col-wrap rotate-btn">
+                                            <div class="front-face">
+                                                <a href="#"><img src="/img/main1.1.png" alt=""></a>
+                                            </div>
+                                            <div class="back-face">
+                                                <div class="caption">
+                                                    <h3>NOTE</h3>
+                                                    <h2>단아함</h2>
+                                                    <p> 파티 드레스로 적합한 공주드레스! 당신도 공주가 되어보세요.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-gap">
+                                        <div class="col-wrap rotate-btn">
+                                            <div class="front-face">
+                                                <a href="#"><img src="/img/flip2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="back-face">
+                                                <div class="caption">
+                                                    <h3>NOTE</h3>
+                                                    <h2>섹시함</h2>
+                                                    <p>특별한 날, 특별한 곳에서 섹시함을 뽐내보세요</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-gap">
+                                        <div class="col-wrap rotate-btn">
+                                            <div class="front-face">
+                                                <a href="#"><img src="/img/flip1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="back-face">
+                                                <div class="caption">
+                                                    <h3>NOTE</h3>
+                                                    <h2>커플룩</h2>
+                                                    <p>가끔은 매치된 커플룩이 대세!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-gap">
+                                        <div class="col-wrap rotate-btn">
+                                            <div class="front-face">
+                                                <a href="#"><img src="/img/flip4.jpg" alt=""></a>
+                                            </div>
+                                            <div class="back-face">
+                                                <div class="caption">
+                                                    <h3>NOTE</h3>
+                                                    <h2>베이비</h2>
+                                                    <p>내가 애기가 있다면 바로 입혀보고 싶은 이 귀여움!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section3">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="title">
+                            <h2>EDITOR'S PICK</h2>
+                            <h3>계절에 맞는 상품!</h3>
+                        </div>
+                        <div class="select-box">
+                            <ul>
+                                <li><a href="#" title="봄" class="spring-menu">봄/가을</a></li>
+                                <li><a href="#" title="여름" class="maker-menu">여름</a></li>
+                                <li><a href="#" title="겨울" class="art-menu">겨울</a></li>
+                            </ul>
+                        </div>
+                        <div class="slide-container container1">
+                            <div class="slide-view">
+                                <ul class="slide-wrap wrap1">
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="/img/spring1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#벚꽃 #단아함</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="/img/spring2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>웨딩</h4>
+                                                <h3>#청아함 #백색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide12">
+                                        <a href="#">
+                                            <img src="/img/spring3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>빈티지</h4>
+                                                <h3>#Y2K #검은색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide13">
+                                        <a href="#">
+                                            <img src="/img/spring4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#꽃무늬 #노란색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide14">
+                                        <a href="#">
+                                            <img src="/img/spring5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>빈티지</h4>
+                                                <h3>#멜빵바지 #귀여운 #애기</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide15">
+                                        <a href="#">
+                                            <img src="/img/spring6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>빈티지</h4>
+                                                <h3>#꽈배기 니트 #유아</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide16">
+                                        <a href="#">
+                                            <img src="/img/spring7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#낙엽 #공주</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide17">
+                                        <a href="#">
+                                            <img src="/img/spring8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>애니메이션</h4>
+                                                <h3>#공주 #야외</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide18">
+                                        <a href="#">
+                                            <img src="/img/spring9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#강렬함 #레드</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="/img/spring10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>전통의상</h4>
+                                                <h3>#우아함 #블루</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="/img/spring11.jpg" alt="">
+                                            <div class="info">
+                                                <h4>애니메이션</h4>
+                                                <h3>#사슴 #초원</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="/img/spring12.jpg" alt="">
+                                            <div class="info">
+                                                <h4>빈티지</h4>
+                                                <h3>#무채색 #고풍스러운</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="/img/spring13.jpg" alt="">
+                                            <div class="info">
+                                                <h4>전통의상</h4>
+                                                <h3>#자연 #꽃 #강렬함</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="/img/spring14.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#깔끔함 #단아함</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="/img/spring15.jpg" alt="">
+                                            <div class="info">
+                                                <h4>홀리데이 코스튬</h4>
+                                                <h3>#땡땡이 #꽃 #유아</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="/img/spring16.jpg" alt="">
+                                            <div class="info">
+                                                <h4>애니메이션</h4>
+                                                <h3>#강렬함 #여전사</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="/img/spring17.jpg" alt="">
+                                            <div class="info">
+                                                <h4></h4>
+                                                <h3>FX ZETA</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="/img/spring18.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 블랙 & 화이트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="/img/spring1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 골드</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="/img/spring2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 아이디</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide12">
+                                        <a href="#">
+                                            <img src="/img/spring3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>BP 153</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide13">
+                                        <a href="#">
+                                            <img src="/img/spring4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>FX700</h4>
+                                                <h3>FX700</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide14">
+                                        <a href="#">
+                                            <img src="./img/spring5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>만년필</h4>
+                                                <h3>모나미 병잉크</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide15">
+                                        <a href="#">
+                                            <img src="./img/spring6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 아이디 샤프</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide16">
+                                        <a href="#">
+                                            <img src="./img/spring7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 네오</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide17">
+                                        <a href="#">
+                                            <img src="./img/spring8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 리스펙트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide18">
+                                        <a href="#">
+                                            <img src="./img/spring9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>153 스틱</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="./img/spring10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>153 어흥이</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="./img/spring11.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>FX ZETA C3</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="./img/spring12.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>제니스7</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="./img/spring13.jpg" alt="">
+                                            <div class="info">
+                                                <h4>만년필</h4>
+                                                <h3>153 네오 만년필 EF</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="./img/spring14.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>60주년 프러스펜 3000 데스크펜 스페셜 에디션</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="./img/spring15.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 스마트펜</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="./img/spring16.jpg" alt="">
+                                            <div class="info">
+                                                <h4>FX 153</h4>
+                                                <h3>FX 153</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="./img/spring1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>유성볼펜</h4>
+                                                <h3>FX ZETA</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="./img/spring2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>프리미엄펜</h4>
+                                                <h3>153 블랙 & 화이트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sec3-prev-box">
+                                <a href="#" class="sec3-prev-btn1"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="sec3-next-box">
+                                <a href="#" class="sec3-next-btn1"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="slide-container container2">
+                            <div class="slide-view">
+                                <ul class="slide-wrap wrap2">
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="./img/summer1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 S / 리필심</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide12">
+                                        <a href="#">
+                                            <img src="./img/summer2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide13">
+                                        <a href="#">
+                                            <img src="./img/summer3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>어데나</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide14">
+                                        <a href="#">
+                                            <img src="./img/summer4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>패브릭마카 470</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide15">
+                                        <a href="#">
+                                            <img src="./img/summer5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 351</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide16">
+                                        <a href="#">
+                                            <img src="./img/summer6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 슈퍼 12색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide17">
+                                        <a href="#">
+                                            <img src="./img/summer7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>데코마카 463</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide18">
+                                        <a href="#">
+                                            <img src="./img/summer8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>데코마카 460</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide19">
+                                        <a href="#">
+                                            <img src="./img/summer9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>붓펜</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide20">
+                                        <a href="#">
+                                            <img src="./img/summer10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>타일틈새마카 401</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="./img/summer11.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 슈퍼 파스텔 12색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="./img/summer12.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000 피그먼트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="./img/summer13.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>라이브 칼라(화이트 축)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="./img/summer14.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000 60색 세트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="./img/summer15.jpg" alt="">
+                                            <div class="info">
+                                                <h4>워터브러쉬</h4>
+                                                <h3>워터 리얼 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="./img/summer16.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>컬러 리얼 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="./img/summer17.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>붓펜 12색 세트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="./img/summer18.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성펜</h4>
+                                                <h3>컬러 트윈 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="./img/summer19.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>세라믹마카 480 / 482</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="./img/summer20.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>라이브 칼라 DIY</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="./img/summer1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 S / 리필심</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide12">
+                                        <a href="#">
+                                            <img src="./img/summer2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide13">
+                                        <a href="#">
+                                            <img src="./img/summer3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>어데나</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide14">
+                                        <a href="#">
+                                            <img src="./img/summer4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>패브릭마카 470</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide15">
+                                        <a href="#">
+                                            <img src="./img/summer5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 351</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide16">
+                                        <a href="#">
+                                            <img src="./img/summer6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 슈퍼 12색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide17">
+                                        <a href="#">
+                                            <img src="./img/summer7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>데코마카 463</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide18">
+                                        <a href="#">
+                                            <img src="./img/summer8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>데코마카 460</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide19">
+                                        <a href="#">
+                                            <img src="./img/summer9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>붓펜</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide20">
+                                        <a href="#">
+                                            <img src="./img/summer10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>타일틈새마카 401</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="./img/summer11.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>사인펜 슈퍼 파스텔 12색</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="./img/summer12.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000 피그먼트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="./img/summer13.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>라이브 칼라(화이트 축)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="./img/summer14.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>프러스펜 3000 60색 세트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="./img/summer15.jpg" alt="">
+                                            <div class="info">
+                                                <h4>워터브러쉬</h4>
+                                                <h3>워터 리얼 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="./img/summer16.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>컬러 리얼 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="./img/summer17.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>붓펜 12색 세트</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="./img/summer18.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성펜</h4>
+                                                <h3>컬러 트윈 브러쉬</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="./img/summer19.jpg" alt="">
+                                            <div class="info">
+                                                <h4>생활마카</h4>
+                                                <h3>세라믹마카 480 / 482</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="./img/summer20.jpg" alt="">
+                                            <div class="info">
+                                                <h4>수성마카</h4>
+                                                <h3>라이브 칼라 DIY</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sec3-prev-box">
+                                <a href="#" class="sec3-prev-btn2"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="sec3-next-box">
+                                <a href="#" class="sec3-next-btn2"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="slide-container container4">
+                            <div class="slide-view">
+                                <ul class="slide-wrap wrap4">
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="./img/winter1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>샤프식 색연필</h4>
+                                                <h3>샤프식 색연필_모니주(블루/핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="./img/winter2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>사인펜</h4>
+                                                <h3>모니주 사인펜(핑크/블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="./img/winter3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>그림물감</h4>
+                                                <h3>그림물감_모니주(핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="./img/winter4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>그림물감</h4>
+                                                <h3>그림물감_모니주(블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="./img/winter5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>색연필</h4>
+                                                <h3>바우하우스 색연필</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="./img/winter6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(옐로우)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="./img/winter7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="./img/winter8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="./img/winter9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>색연필</h4>
+                                                <h3>종이말이 색연필_모니주(블루/핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="./img/winter10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>연필</h4>
+                                                <h3>연필_모니주(오렌지/핑크/퍼플)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="./img/winter11.jpg" alt="">
+                                            <div class="info">
+                                                <h4>연필</h4>
+                                                <h3>연필_모니주(그린/블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide7">
+                                        <a href="#">
+                                            <img src="./img/winter1.jpg" alt="">
+                                            <div class="info">
+                                                <h4>샤프식 색연필</h4>
+                                                <h3>샤프식 색연필_모니주(블루/핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide8">
+                                        <a href="#">
+                                            <img src="./img/winter2.jpg" alt="">
+                                            <div class="info">
+                                                <h4>사인펜</h4>
+                                                <h3>모니주 사인펜(핑크/블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide9">
+                                        <a href="#">
+                                            <img src="/img/winter3.jpg" alt="">
+                                            <div class="info">
+                                                <h4>그림물감</h4>
+                                                <h3>그림물감_모니주(핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide10">
+                                        <a href="#">
+                                            <img src="/img/winter4.jpg" alt="">
+                                            <div class="info">
+                                                <h4>그림물감</h4>
+                                                <h3>그림물감_모니주(블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide11">
+                                        <a href="#">
+                                            <img src="/img/winter5.jpg" alt="">
+                                            <div class="info">
+                                                <h4>색연필</h4>
+                                                <h3>바우하우스 색연필</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide1">
+                                        <a href="#">
+                                            <img src="/img/winter6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(옐로우)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide2">
+                                        <a href="#">
+                                            <img src="/img/winter6.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide3">
+                                        <a href="#">
+                                            <img src="/img/winter7.jpg" alt="">
+                                            <div class="info">
+                                                <h4>크레파스</h4>
+                                                <h3>크레파스_모니주(블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide4">
+                                        <a href="#">
+                                            <img src="/img/winter8.jpg" alt="">
+                                            <div class="info">
+                                                <h4>색연필</h4>
+                                                <h3>종이말이 색연필_모니주(블루/핑크)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide5">
+                                        <a href="#">
+                                            <img src="/img/winter9.jpg" alt="">
+                                            <div class="info">
+                                                <h4>연필</h4>
+                                                <h3>연필_모니주(오렌지/핑크/퍼플)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="slide slide6">
+                                        <a href="#">
+                                            <img src="/img/winter10.jpg" alt="">
+                                            <div class="info">
+                                                <h4>연필</h4>
+                                                <h3>연필_모니주(그린/블루)</h3>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sec3-prev-box">
+                                <a href="#" class="sec3-prev-btn4"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="sec3-next-box">
+                                <a href="#" class="sec3-next-btn4"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section4">
+            <video class="main-video" autoplay muted playsinline loop>
+                <source src="/img/video.mp4" type="video/mp4">
+            </video>
+        </section>
+        <section id="section5">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="left">
+                            <div class="title">
+                                <h2>MOMENTO NEWS</h2>
+                            </div>
+                            <div class="content">
+                                <ul>
+                                    <li>
+                                        <a href="#"><img src="/img/pretty.jpg" alt=""></a>
+                                        <div class="txt">
+                                            <a href="#" title="이벤트">
+                                                <h3>특급 이벤트</h3>
+                                                <p>유명작가 '정용준' 포토그래퍼 프로모행사<br>서울 권역에서 실시로 예약은 오는 12월..</p>
+                                            </a>
+                                        </div>
+                                        <h5>2023-10-18</h5>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="이벤트2"><h4>- 스냅사진 전문 '정일채'스튜디오 개업 안내</h4></a>
+                                        <span>2023-10-12</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="이벤트3"><h4>- 대학로 스팟, 낙산공원 스냅사진 인기! 모델 신이수 활약 보기</h4></a>
+                                        <span>2023-10-10</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="이벤트4"><h4>- “스냅의상, 아나바다” 투지현, 친환경 프로젝트 ‘그린백 캠페인 활동</h4></a>
+                                        <span>2023-09-22</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <ul>
+                                <li><img src="/img/inquiry_tit_bg.png" alt=""></li>
+                                <li><h2>INQUIRY</h2></li>
+                                <li><p>언제나 소중한 의견에 귀 기울이겠습니다.<br>궁금한 사항은 메일주세요.</p></li>
+                                <li><a href="https://www.google.com">INQUIRY NOW</a></li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li><img src="/img/shop_tit_bg.png" alt=""></li>
+                                <li><h2>FAMILY</h2></li>
+                                <li><p>모멘토와 협력하는 사진사<br>자세한건 문의 부탁드립니다.</p></li>
+                                <li><a href="https://www.google.com">FIND PHOTOGRAPHER</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="container">
+            <div class="gap">
+                <div class="wrap">
+                    <div class="top">
+                        <a href="/" title="HOME"><img src="/img/logo2.png" alt=""></a>
+                        <ul>
+                            <li><a href="/history" title="회사소개"><span>회사소개</span></a></li>
+                            <li><i>|</i></li>
+                            <li><a href="#" title="개인정보처리방침"><span>개인정보처리방침</span></a></li>
+                            <li><i>|</i></li>
+                            <li><a href="#" title="이메일무단수집거부"><span>이메일무단수집거부</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="bottom">
+                        <ul>
+                            <li>
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <h3>INFO</h3>
+                                        <address>ADDRESS : 서울 종로구 창경궁로 254 7층<i>|</i>TEL : 031-216-0153<i>|</i>FAX : 031-270-5154</address>
+                                        <p>COPYRIGHT(C) 2023 KOSA.CO.,LTD. ALL RIGHTS RESERVED.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <h3>CUSTOMER CENTER</h3>
+                                        <h2>080-123-4567</h2>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="family-site">
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <a href="#" title="FAMILY SITE">FAMILY SITE</a>
+                                        <ul class="site-list">
+                                            <li><a href="#" title="신이수">신이수 작가</a></li>
+                                            <li><a href="#" title="김지현">김지현 작가</a></li>
+                                            <li><a href="#" title="박지현">박지현 작가</a></li>
+                                            <li><a href="#" title="정용준">정용준 작가 </a></li>
+                                            <li><a href="#" title="정일채">정일채 작가</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="goTop">
+        <a href="#" class="goTop-btn"><i class="fa fa-arrow-up"></i></a>
+    </div>
+</div>
+</body>
+<script th:src="@{/js/lib/monami.js}"></script>
+</html>

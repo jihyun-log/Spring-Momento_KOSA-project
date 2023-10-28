@@ -1,0 +1,100 @@
+
+/* 로그인 양식 컨테이너 스타일 수정 */
+         #login {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           margin: 120px;
+         }
+
+         #loginForm {
+           background: #fff;
+           padding: 20px;
+           border: 1px solid #eaeaea;
+           border-radius: 5px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           width: 500px;
+           height: 325px;
+           text-align: center;
+           margin: 50px 0 0 120px ;
+
+         }
+
+         #login h1 {
+           font-size: 24px;
+           margin-bottom: 40px;
+           text-align: center;
+           font-weight: bold;
+         }
+
+         #loginForm label {
+           display: block;
+           margin-bottom: 10px;
+           text-align: left; /* 레이블 텍스트를 왼쪽 정렬합니다. */
+         }
+
+           .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+         .btn.login {
+           background-color: #333; /* 회색 버튼 */
+           color: #fff;
+           border: none;
+           padding: 5px 20px;
+           font-size: 16px;
+           font-weight: bold;
+           border-radius: 3px;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+           align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
+           margin: 20px;
+         }
+
+         .btn.login:hover {
+           background-color: #555; /* 버튼을 호버할 때 배경색 변경 */
+         }
+
+         .btn.register:hover {
+           background-color: #555; /* 버튼을 호버할 때 배경색 변경 */
+         }
+
+         .btn.register {
+           background-color: #ccc; /* 회색 버튼 */
+           color: #fff;
+           border: none;
+           padding: 5px 15px;
+           font-size: 16px;
+           font-weight: bold;
+           border-radius: 3px;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+           align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
+           margin: 20px;
+         }
+
+         .kakao-login {
+           text-align: center;
+           margin-top: 10px; /* 로고와 텍스트 간의 간격을 조정하세요. */
+         }
+
+         .kakao-login img {
+           width: 180px; /* 로고의 크기를 조정하세요. */
+           height: auto;
+           background-color: #fff; /* 버튼을 호버할 때 배경색 변경 */
+         }
+
+         .kakao-login p {
+           margin-bottom: 10px; /* 텍스트와 구분 선 간의 간격을 조정하세요. */
+           font-weight: bold;
+         }
+
+         /* 로그인 창 아래의 구분 선 스타일링 */
+         .login-divider {
+           border: 1px solid #ccc;
+           margin: 30px 0;
+         }

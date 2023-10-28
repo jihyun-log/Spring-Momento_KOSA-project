@@ -1,0 +1,141 @@
+<!--정용준: 이 HTML 코드는 Thymeleaf를 사용하여 상품 관리 페이지를 렌더링하는 데 사용됩니다. -->
+<!--       이 페이지는 상품 목록을 표시하고, 검색 및 페이징 기능을 제공합니다.-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/layouts/layout1}">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Manage</title>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <link rel="stylesheet" th:href="@{/css/productMng.css}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+
+    $(document).ready(function(){
+      $("#searchBtn").on("click",function(e) {
+        e.preventDefault();
+        page(0);
+      });
+    });
+
+    function page(page){
+      var searchDateType = $("#searchDateType").val();
+      var searchSellStatus = $("#searchSellStatus").val();
+      var searchTheme = $("#searchTheme").val();
+      var searchBy = $("#searchBy").val();
+      var searchQuery = $("#searchQuery").val();
+
+      location.href="/admin/products/" + page + "?searchDateType=" + searchDateType
+              + "&searchSellStatus=" + searchSellStatus
+              + "&searchTheme=" + searchTheme
+              + "&searchBy=" + searchBy
+              + "&searchQuery=" + searchQuery;
+    }
+
+  </script>
+</th:block>
+
+<div layout:fragment="content">
+
+  <form th:action="@{'/admin/products/' + ${products.number}}" role="form" method="get" th:object="${products}">
+    <table class="table">
+      <h1>상품 승인 관리</h1>
+      <hr class="login-divider">
+      <thead>
+      <tr>
+        <td>상품아이디</td>
+        <td>테마명</td>
+        <td>상품명</td>
+        <td>상태</td>
+        <td>등록자</td>
+        <td>등록일</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product, status: ${products.getContent()}">
+        <td th:text="${product.id}"></td>
+        <td>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).ANIME}">애니메이션</span>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).HOLIDAY}">홀리데이 코스튬</span>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).VINTAGE}">빈티지</span>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).WEDDING}">웨딩</span>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).TRAD_COSTUME}">전통의상</span>
+          <span th:if="${product.productTheme == T(com.momento.constant.ProductTheme).ETC}">기타</span>
+        </td>
+        <td>
+          <a th:href="'/admin/product/'+${product.id}" th:text="${product.title}"></a>
+        </td>
+        <td>
+          <span class="green-text" th:if="${product.productSellStatus == T(com.momento.constant.ProductSellStatus).PENDING}">등록 대기</span>
+          <span class="blue-text" th:if="${product.productSellStatus == T(com.momento.constant.ProductSellStatus).SELL}">판매중</span>
+          <span class="red-text" th:if="${product.productSellStatus == T(com.momento.constant.ProductSellStatus).SOLD_OUT}">품절</span>
+        </td>
+        <td th:text="${product.createdBy}"></td>
+        <td th:text="${product.date}"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div th:with="start=${(products.number/maxPage)*maxPage + 1}, end=(${(products.totalPages == 0) ? 1 : (start + (maxPage - 1) < products.totalPages ? start + (maxPage - 1) : products.totalPages)})" >
+      <ul class="pagination justify-content-center">
+
+        <li class="page-item" th:classappend="${products.first}?'disabled'">
+          <a th:onclick="'javascript:page(' + ${products.number - 1} + ')'" aria-label='Previous' class="page-link">
+            <span aria-hidden='true'>Previous</span>
+          </a>
+        </li>
+
+        <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${products.number eq page-1}?'active':''">
+          <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+        </li>
+
+        <li class="page-item" th:classappend="${products.last}?'disabled'">
+          <a th:onclick="'javascript:page(' + ${products.number + 1} + ')'" aria-label='Next' class="page-link">
+            <span aria-hidden='true'>Next</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="form-inline justify-content-center" th:object="${productSearchDto}">
+      <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+        <option value="all">전체기간</option>
+        <option value="1d">1일</option>
+        <option value="1w">1주</option>
+        <option value="1m">1개월</option>
+        <option value="6m">6개월</option>
+      </select>
+      <select th:field="*{searchSellStatus}" class="form-control" style="width:auto;">
+        <option value="">판매상태(전체)</option>
+        <option value="PENDING" class="green-text">등록 대기</option>
+        <option value="SELL" class="blue-text">판매중</option>
+        <option value="SOLD_OUT" class="red-text">품절</option>
+      </select>
+      <select th:field="*{searchTheme}" class="form-control" style="width:auto;">
+        <option value="">테마(전체)</option>
+        <option value="ANIME">애니메이션</option>
+        <option value="HOLIDAY">홀리데이 코스튬</option>
+        <option value="VINTAGE">빈티지</option>
+        <option value="WEDDING">웨딩</option>
+        <option value="TRAD_COSTUME">전통의상</option>
+        <option value="ETC">기타</option>
+      </select>
+      <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+        <option value="title">상품명</option>
+        <option value="createdBy">등록자</option>
+      </select>
+      <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+      <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+    </div>
+  </form>
+
+</div>
+
+</html>

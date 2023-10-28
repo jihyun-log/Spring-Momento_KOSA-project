@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momento</title>
+    <link rel="stylesheet" th:href="@{/css/history.css}"/>
+    <link rel="stylesheet" th:href="@{/css/response.css}"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" />
+    <script th:src="@{/js/lib/jquery-1.12.4.min.js}"></script>
+    <script th:src="@{/js/lib/jquery.easing.1.3.js}"></script>
+</head>
+<body>
+<div id="skip">
+    <ul>
+        <li><a href="#header">메뉴 바로가기</a></li>
+        <li><a href="#main">메인 바로가기</a></li>
+        <li><a href="#footer">하단 바로가기</a></li>
+    </ul>
+</div>
+<div id="wrap">
+    <header id="header" th:fragment="header">
+        <div class="top">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="left">
+                            <div class="lang">
+                                <a href="#" class="kor"><img src="/img/lang_kor.gif" alt="">KOR</a>
+                                <ul class="lang-list">
+                                    <li><a href="#"><img src="/img/lang_eng.gif" alt="">ENG</a></li>
+                                </ul>
+                            </div>
+                            <div class="sns-box">
+                                <ul>
+                                    <li><a href="https://ko-kr.facebook.com/" title="페이스북"><img src="/img/sns_facebook.gif" alt="facebook"></a></li>
+                                    <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%EB%83%85%EC%82%AC%EC%A7%84/" title="인스타그램"><img src="/img/sns_insta.gif" alt="instagram"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li class="nav-product" sec:authorize="isAnonymous()">
+                                    <a class="nav-link" href="/members/login">LOGIN</a>
+                                <li><i>|</i></li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="/members/logout">LOGOUT <i>|</i></a>
+                                <li><a href="https://naver.me/xn6PvLTD" title="SITE MAP">SITE MAP</a></li>
+                                <li><i>|</i></li>
+                                <li><a href="#footer" title="CONTACT US">CONTACT US</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="container">
+                <div class="gap">
+                    <div class="wrap">
+                        <div class="logo">
+                            <a href="/"><img src="/img/logo.png" alt=""></a>
+                        </div>
+                        <nav id="nav">
+                            <ul>
+                                <li>
+                                    <a href="/history" title="회사소개" class="main-btn">회사소개</a>
+                                </li>
+                                <li>
+                                    <a href="/product" title="제품" class="main-btn">THEME</a>
+                                    <div class="sub sub2">
+                                        <ul>
+                                            <li><a href="/anime" title="애니메이션">애니메이션</a></li>
+                                            <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                            <li><a href="/vintage" title="빈티지">빈티지</a></li>
+                                            <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                            <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                            <li><a href="/etc" title="기타">기타</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="openChatPopup()">실시간 채팅</a>
+                                </li>
+
+                                <script>
+                                    function openChatPopup() {
+                                        var popupWidth = 600;
+                                        var popupHeight = 700;
+                                        var left = (screen.width - popupWidth) / 2;
+                                        var top = (screen.height - popupHeight) / 2;
+
+                                        // 주소 입력창 없이 팝업 창 열기
+                                        var chatPopup = window.open("/room", "ChatPopup", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + left + ",top=" + top + ",location=0,menubar=0,toolbar=0,status=0");
+
+                                        // 팝업 창이 이미 열려 있는 경우에 대한 처리
+                                        if (chatPopup) {
+                                            chatPopup.focus();
+                                        } else {
+                                            alert("팝업 창이 차단되었거나 브라우저가 팝업 창을 지원하지 않습니다.");
+                                        }
+                                    }
+                                </script>
+                                <li class="main-btn" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="/cart">장바구니</a>
+                                </li>
+                                <div class="sub sub4">
+                                </div>
+                                <li>
+                                    <a href="/orders" title="MY PAGE" class="main-btn">MY PAGE</a>
+                                    <div class="sub sub5">
+                                        <ul>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/orders">구매 이력</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="icon-box">
+                            <form id="search-form" class="form-inline my-2 my-lg-0" th:action="@{/product}" method="get">
+                                <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <a href="#" title="검색" id="search-button"><i class="fa fa-search"></i></a>
+                            <a href="#" class="all" title="전체메뉴">
+                  <span class="all-btn">
+                    <i class="line1"></i>
+                    <i class="line2"></i>
+                    <i class="line3"></i>
+                  </span>
+                            </a>
+                        </div>
+                        <div class="all-menu">
+                            <ul>
+                                <li>
+                                    <a href="/history" title="회사소개" class="sub-title">회사소개</a>
+                                    <div class="all-sub sub1">
+                                        <ul>
+                                            <li><a href="/history" title="회사정보">회사정보</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/product" title="제품" class="sub-title">THEME</a>
+                                    <div class="all-sub sub2">
+                                        <ul>
+                                            <li><a href="/wedding" title="애니메이션">애니메이션</a></li>
+                                            <li><a href="/holiday" title="홀리데이 코스튬">홀리데이 코스튬</a></li>
+                                            <li><a href="/vintage#" title="빈티지">빈티지</a></li>
+                                            <li><a href="/wedding" title="웨딩">웨딩</a></li>
+                                            <li><a href="/traditional" title="전통의상">전통의상</a></li>
+                                            <li><a href="/etc" title="기타">기타</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-product" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="javascript:void(0);" onclick="openChatPopup()">실시간 채팅</a>
+                                    <div class="all-sub sub3">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/cart" title="장바구니" class="sub-title" sec:authorize="isAuthenticated()">장바구니</a>
+                                    <div class="all-sub sub4">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/orders" title="MY PAGE" class="sub-title">MY PAGE</a>
+                                    <div class="all-sub sub5">
+                                        <ul>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/user/product/new">상품 판매 신청</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                                                <a class="nav-link" href="/admin/products">상품 승인 관리</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/orders">구매 이력</a>
+                                            </li>
+                                            <li class="nav-product" sec:authorize="isAuthenticated()">
+                                                <a class="nav-link" href="/admin/textMail">메일 보내기</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <section id="section1">
+            <div class="slide-container">
+                <div class="slide-view">
+                    <ul class="slide-wrap">
+                        <li class="slide slide3">
+                            <div class="caption">
+                                <h2>우리는 꿈을 그려나가며<br>더 나은 미래를<br>만들고자 노력합니다.</h2>
+                                <i></i>
+                                <p>어떻게 하면 더 좋은 제품을 만들 수 있을지,<br>더 나은 기업이 될 수 있을지 고민합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide1">
+                            <div class="caption">
+                                <h2>사람뿐만 아니라<br>지구에게도 좋은 패션을<br>만들 때입니다.</h2>
+                                <i></i>
+                                <p>생물다양성에 대해 들어본 적이 있나요?<br>다양한 생태계는 깨끗한 물과 음식을 만드는 데 중요한 역할을 합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide2">
+                            <div class="caption">
+                                <h2>따라할 가치가 있는<br>유일한 트렌드?<br>재활용과 리폼입니다.</h2>
+                                <i></i>
+                                <p>재미없지만 우리가 알아야 하는 사실.<br>현재 옷을 만드는 데 사용되는 소재의 1% 미만이 재활용됩니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide3">
+                            <div class="caption">
+                                <h2>내가 원하는 대로 입으세요.<br>모멘토는<br>모두를 환영합니다.</h2>
+                                <i></i>
+                                <p>모멘토는 있는 그대로의 모습과<br>자신에 대한 좋은 감정을 지지합니다.</p>
+                            </div>
+                        </li>
+                        <li class="slide slide1">
+                            <div class="caption">
+                                <h2>사람뿐만 아니라<br>지구에게도 좋은 패션을<br>만들 때입니다.</h2>
+                                <i></i>
+                                <p>생물다양성에 대해 들어본 적이 있나요?<br>다양한 생태계는 깨끗한 물과 음식을 만드는 데 중요한 역할을 합니다.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="next-btn-box">
+                    <a href="#" class="next-btn"><i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="prev-btn-box">
+                    <a href="#" class="prev-btn"><i class="fa fa-angle-left"></i></a>
+                </div>
+                <div class="page-btn-box">
+                    <span><a href="#" class="page-btn on"></a></span>
+                    <span><a href="#" class="page-btn"></a></span>
+                    <span><a href="#" class="page-btn"></a></span>
+                    <span><a href="#" class="pause-btn"><i class="fa fa-pause"></i></a></span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="container">
+            <div class="gap">
+                <div class="wrap">
+                    <div class="top">
+                        <a href="/" title="HOME"><img src="/img/logo2.png" alt=""></a>
+                        <ul>
+                            <li><a href="/history" title="회사소개"><span>회사소개</span></a></li>
+                            <li><i>|</i></li>
+                            <li><a href="#" title="개인정보처리방침"><span>개인정보처리방침</span></a></li>
+                            <li><i>|</i></li>
+                            <li><a href="#" title="이메일무단수집거부"><span>이메일무단수집거부</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="bottom">
+                        <ul>
+                            <li>
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <h3>INFO</h3>
+                                        <address>ADDRESS : 서울 종로구 창경궁로 254 7층<i>|</i>TEL : 031-216-0153<i>|</i>FAX : 031-270-5154</address>
+                                        <p>COPYRIGHT(C) 2023 KOSA.CO.,LTD. ALL RIGHTS RESERVED.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <h3>CUSTOMER CENTER</h3>
+                                        <h2>080-123-4567</h2>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="family-site">
+                                <div class="col-gap">
+                                    <div class="col-wrap">
+                                        <a href="#" title="FAMILY SITE">FAMILY SITE</a>
+                                        <ul class="site-list">
+                                            <li><a href="#" title="신이수">신이수 작가</a></li>
+                                            <li><a href="#" title="김지현">김지현 작가</a></li>
+                                            <li><a href="#" title="박지현">박지현 작가</a></li>
+                                            <li><a href="#" title="정용준">정용준 작가 </a></li>
+                                            <li><a href="#" title="정일채">정일채 작가</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="goTop">
+        <a href="#" class="goTop-btn"><i class="fa fa-arrow-up"></i></a>
+    </div>
+    <script th:src="@{/js/lib/monami.js}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!--정용준, 정일채: 이 페이지는 전체 상품 목록을 표시하고 페이지별로 표시되는 상품 수, -->
+<!--              검색, 및 페이징 기능을 제공합니다. Thymeleaf를 사용하여 동적 데이터를 페이지에 -->
+<!--              표시하며, 사용자 지정 스타일 및 레이아웃을 CSS를 통해 정의합니다.-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name ="_csrf_header" th:content="${_csrf.headerName}"  />
+    <meta name="_csrf" th:content="${_csrf.token}"  />
+    <title>Theme</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}"/>
+</head>
+
+<!-- 사용자 CSS 추가 -->
+
+<div layout:fragment="content">
+
+    <input type="hidden" name="searchQuery" th:value="${productSearchDto.searchQuery}">
+    <div th:if="${not #strings.isEmpty(productSearchDto.searchQuery)}" class="center">
+        <p class="h3 font-weight-bold" th:text="${productSearchDto.searchQuery} + '검색 결과'"></p>
+    </div>
+    <div class="row">
+        <th:block th:each="product, status: ${products.getContent()}">
+            <div class="col-md-4 margin" th:if="${product.productSellStatus != T(com.momento.constant.ProductSellStatus).PENDING}">
+                <div class="card">
+                    <a th:href="'/product/' + ${product.id}" class="text-dark">
+                        <div class="card-img-container">
+                            <img th:src="${product.imgUrl}" class="card-img-top" th:alt="${product.title}">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">[[${product.title}]]</h4>
+                            <h3 class="card-title text-danger">[[${product.price}]]원</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+    <div th:with="start=${(products.number/maxPage)*maxPage + 1}, end=(${(products.totalPages == 0) ? 1 : (start + (maxPage - 1) < products.totalPages ? start + (maxPage - 1) : products.totalPages)})" >
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:classappend="${products.number eq 0}?'disabled':''">
+                <a th:href="@{'/product' + '?searchQuery=' + ${productSearchDto.searchQuery} + '&page=' + ${products.number-1}}" aria-label='Previous' class="page-link">
+                    <span aria-hidden='true'>Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${products.number eq page-1}?'active':''">
+                <a th:href="@{'/product' +'?searchQuery=' + ${productSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${products.number+1 ge products.totalPages}?'disabled':''">
+                <a th:href="@{'/product' +'?searchQuery=' + ${productSearchDto.searchQuery} + '&page=' + ${products.number+1}}" aria-label='Next' class="page-link">
+                    <span aria-hidden='true'>Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+

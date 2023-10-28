@@ -1,0 +1,175 @@
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    justify-content: center;
+    display: center; /* Change this to "text-align: center;" */
+}
+
+#add-to-cart {
+    background-color: #ccc; /* 회색 버튼 */
+    text-align: center; /* Center align text inside this element */
+}
+
+#add-to-cart:hover {
+    background-color: #999; /* 마우스 호버 시 회색 진한색으로 변경 */
+    text-align: center; /* Center align text inside this element on hover */
+}
+
+#buy-now {
+    background-color: #000; /* 검은색 버튼 */
+    text-align: center; /* Center align text inside this element */
+}
+
+#buy-now:hover {
+    background-color: #333; /* 마우스 호버 시 검은색 진한색으로 변경 */
+    text-align: center; /* Center align text inside this element on hover */
+}
+
+#sold-out {
+    background-color: red; /* 빨간 버튼 */
+    color: white; /* 텍스트 색상을 흰색으로 설정 (버튼의 배경색과 대비를 높이기 위해) */
+    text-align: center; /* Center align text inside this element */
+}
+
+#sold-out:hover {
+    background-color: #ff3333; /* 마우스 호버 시 진한 빨간색으로 변경 */
+    text-align: center; /* Center align text inside this element on hover */
+}
+
+.product-description-box {
+    background-color: #f0f0f0; /* 배경색 지정 */
+    padding: 20px; /* 안쪽 여백 설정 */
+    border: 1px solid #ddd; /* 테두리 설정 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 만듦 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    text-align: center; /* Center align text inside this element */
+}
+
+/* 전체 컨테이너 스타일링 */
+.container {
+    padding: 20px;
+}
+
+/* 상품 이미지 스타일링 */
+.repImgDiv {
+    text-align: center;
+}
+
+.repImg {
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: 150px;
+
+}
+
+/* 상품 정보 스타일링 */
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center; /* Center align text inside this element */
+}
+
+.product-description {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center; /* Center align text inside this element */
+}
+
+.product-price {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center; /* Center align text inside this element */
+}
+
+.product-price-value {
+    color: #ff0000; /* 빨간색 가격 표시 */
+    text-align: center; /* Center align text inside this element */
+}
+
+.total-price {
+    font-size: 28px;
+    justify-content: center;
+    text-align: center; /* Center align text inside this element */
+}
+
+.product-actions {
+    margin-top: 20px;
+    text-align: center; /* Center align text inside this element */
+}
+
+/* 상품 설명 스타일링 */
+.product-description-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #aaa;
+    margin-top: 30px;
+    justify-content: center;
+    text-align: center; /* Center align text inside this element */
+}
+
+/* 상품 이미지 스타일링 */
+.product-image {
+
+    max-height: 100%;
+    border: 1px solid #ddd;
+}
+
+.roundedrepImg {
+    border-radius: 50%; /* Makes the image rounded (circular) */
+    width: 300px; /* Set the width to 300px */
+    height: 300px; /* Set the height to 300px */
+    margin-top: 150px;
+    margin-bottom: 40px;
+}
+
+.d-flex {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.wd50 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+}
+
+.my-4 {
+    width: 50%
+}
+
+.my-5 {
+    width: 100%
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.display-5 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.lead {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.roundedmgb-15 {
+    width: 800px;
+    height: auto;
+    justify-content: center;
+    margin: 0 auto;
+    display: block; /* 이미지를 블록 레벨 요소로 설정 */
+}

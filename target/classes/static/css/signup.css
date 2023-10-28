@@ -1,0 +1,61 @@
+/* 회원가입 양식 컨테이너 스타일 수정 */
+#signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#signupForm {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  text-align: center;
+  margin: 120px 0 auto 0;
+}
+
+#signup h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#signupForm label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn.btn-primary {
+  background-color: #333; /* 회색 버튼 */
+  color: #fff;
+  border: none;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 20px;
+}
+
+.btn.btn-primary:hover {
+  background-color: #555; /* 버튼을 호버할 때 배경색 변경 */
+}
+
+/* 로그인 창 아래의 구분 선 스타일링 */
+.login-divider {
+  border: 1px solid #ccc;
+  margin: 30px 0;
+}

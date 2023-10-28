@@ -1,0 +1,354 @@
+@import url(./reset.css);
+@import url(./fonts.css);
+
+body {
+    font-family: "Montserrat";
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+
+
+#header {
+  width: 100%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+#header .top {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #eaeaea;
+}
+#header .top .container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#header .top .container .gap {
+  margin: 0;
+  width: 100%;
+}
+#header .top .container .gap .wrap {
+  width: 100%;
+}
+#header .top .container .gap .wrap .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 15px;
+  height: 100%;
+}
+#header .top .container .gap .wrap .left .lang {
+  width: 85px;
+  height: 25px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  font-family: "Montserrat";
+}
+#header .top .container .gap .wrap .left .lang a.kor {
+  display: block;
+  padding: 0 10px;
+  font-size: 11px;
+  height: 25px;
+  line-height: 25px;
+  background: url(../img/lang_arr.gif) no-repeat 65px center;
+}
+#header .top .container .gap .wrap .left .lang a.kor img {
+  width: auto;
+  height: auto;
+  margin: 0 7px 2px 0;
+}
+#header .top .container .gap .wrap .left .lang ul {
+  display: none;
+}
+#header .top .container .gap .wrap .left .lang ul li {
+  width: 100%;
+}
+#header .top .container .gap .wrap .left .lang ul li a {
+  display: block;
+  padding: 0 10px;
+  font-size: 11px;
+  height: 13px;
+  line-height: 13px;
+}
+#header .top .container .gap .wrap .left .lang ul li a img {
+  width: auto;
+  height: auto;
+  margin: 0 7px 2px 0;
+}
+#header .top .container .gap .wrap .left .lang.on {
+  height: 45px;
+}
+#header .top .container .gap .wrap .left .sns-box {
+  position: absolute;
+  top: 0;
+  left: 90px;
+}
+#header .top .container .gap .wrap .left .sns-box ul {
+  width: 100%;
+  display: flex;
+}
+#header .top .container .gap .wrap .left .sns-box ul li {
+  margin: 0 0 0 7px;
+}
+#header .top .container .gap .wrap .left .sns-box ul li a {
+  display: block;
+}
+#header .top .container .gap .wrap .left .sns-box ul li a img {
+  width: auto;
+}
+#header .top .container .gap .wrap .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#header .top .container .gap .wrap .right ul {
+  width: 100%;
+  display: flex;
+  line-height: 57px;
+}
+#header .top .container .gap .wrap .right ul li a {
+  color: #9b9a9a;
+  font-size: 11px;
+  font-family: "Montserrat";
+}
+#header .top .container .gap .wrap .right ul li i {
+  color: #eaeaea;
+  font-size: 5px;
+  margin: 0 10px;
+  vertical-align: baseline;
+}
+#header .bottom {
+  width: 100%;
+  height: 89px;
+  background: #fff;
+}
+#header .bottom .container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+#header .bottom .container .gap {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+#header .bottom .container .gap .wrap {
+  width: 100%;
+  height: 100%;
+}
+#header .bottom .container .gap .wrap .logo {
+  width: 160px;
+  height: 89px;
+  margin: auto auto auto 0;
+}
+#header .bottom .container .gap .wrap .logo a img {
+  width: 89px;
+  height: 89px;
+  margin: 0 50px;
+}
+#header .bottom .container .gap .wrap #nav {
+  width: 1000px;
+  height: 100%;
+  line-height: 89px;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 16%;
+}
+#header .bottom .container .gap .wrap #nav > ul {
+  width: 100%;
+  display: flex;
+}
+#header .bottom .container .gap .wrap #nav > ul > li {
+  width: 100%;
+}
+#header .bottom .container .gap .wrap #nav > ul > li > a {
+  display: block;
+  font-size: 17px;
+  line-height: 89px;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap #nav > ul > li > a:hover {
+  color: #c40f39;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub {
+  width: 100%;
+  display: none;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub ul {
+  width: 100%;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub ul li {
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub ul li:last-child {
+  border: 0;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub ul li a {
+  display: block;
+  line-height: 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: #6e6e6e;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap #nav > ul > li .sub ul li a:hover {
+  color: #c40f39;
+}
+#header .bottom .container .gap .wrap .icon-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 89px;
+}
+#header .bottom .container .gap .wrap .icon-box a {
+  display: block;
+  width: 20px;
+  margin: auto 40px auto auto;
+}
+#header .bottom .container .gap .wrap .icon-box a i {
+  display: block;
+  font-size: 20px;
+  line-height: 89px;
+}
+#header .bottom .container .gap .wrap .icon-box a.all {
+  width: 15px;
+  height: 15px;
+  display: block;
+  margin: -53px 0 auto auto;
+  position: relative;
+}
+#header .bottom .container .gap .wrap .icon-box a.all span {
+  display: block;
+}
+#header .bottom .container .gap .wrap .icon-box a.all span .line1 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap .icon-box a.all span .line2 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -1px;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap .icon-box a.all span .line3 {
+  width: 19px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: -1px;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap .icon-box a.all.on .line1 {
+  transform: translateY(7px) rotate(45deg);
+}
+#header .bottom .container .gap .wrap .icon-box a.all.on .line2 {
+  opacity: 0;
+}
+#header .bottom .container .gap .wrap .icon-box a.all.on .line3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+#header .bottom .container .gap .wrap .all-menu {
+  width: 1400px;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  padding: 50px 30px;
+  display: none;
+}
+#header .bottom .container .gap .wrap .all-menu > ul {
+  width: 100%;
+  display: flex;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li {
+  width: 100%;
+  border-right: 1px solid #eee;
+  margin: 0 15px;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li:last-child {
+  border: 0;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li > a {
+  font-size: 21px;
+  color: #303030;
+  font-weight: 500;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li > a::after {
+  content: "";
+  display: block;
+  width: 19px;
+  height: 2px;
+  background: #c40f39;
+  margin: 20px 0;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li .all-sub {
+  width: 100%;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li .all-sub ul {
+  width: 100%;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li .all-sub ul li {
+  width: 100%;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li .all-sub ul li a {
+  display: block;
+  font-size: 17px;
+  line-height: 40px;
+  color: #6e6e6e;
+  transition: all 0.3s ease-in-out;
+}
+#header .bottom .container .gap .wrap .all-menu > ul > li .all-sub ul li a:hover {
+  color: #c40f39;
+}
+/* #search-form 스타일 수정 */
+#search-form {
+  display: none;
+  justify-content: center;
+  vertical-align: baseline;
+}
+
+/* 검색 버튼 스타일 수정 */
+#search-form button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  height: 40px;
+}
+
+/* 검색 버튼 호버 스타일 */
+#search-form button:hover {
+  background-color: #333;
+  height: 40px;
+}
+
+/* 검색 입력 필드 스타일 수정 (길이 조절) */
+#search-form input {
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  align-items: center;
+}

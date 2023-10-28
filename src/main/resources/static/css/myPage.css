@@ -1,0 +1,148 @@
+.my-page {
+  max-width: 600px;
+  margin: 150px auto 100px;
+}
+
+.my-page__title {
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.my-page__profile {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.my-page-profile__image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: 250px;
+  display: block;
+}
+
+.my-page-profile__nickname {
+  font-weight: bold;
+  font-size: 22px;
+  margin-left: 250px;
+  text-align: center;
+}
+
+.my-transaction-info {
+  margin-top: 24px;
+  margin-right: 12px;
+  width: 23vw;
+  text-align: center;
+}
+
+.my-transaction-info__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  min-width: 260px;
+}
+
+.my-transaction-info__title {
+  font-weight: 400;
+  font-size: 22px;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.my-transaction-info__content {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.my-page__introduction {
+  margin-top: 19px;
+  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 22px;
+  min-height: 72px;
+  max-height: 170px;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+.my-page__edit-buttons {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-profile-edit,
+.my-info-edit {
+  width: 400px;
+  height: 50px;
+  font-size: 19px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.my-profile-edit:active,
+.my-info-edit:active {
+  opacity: 0.7;
+}
+
+.my-profile-edit {
+  width: 400px;
+  height: 50px;
+  border: 2px solid #4751FD;
+  background-color: white;
+  color: #4751FD;
+  font-size: 16px;
+}
+
+.my-info-edit {
+  width: 400px;
+  height: 50px;
+  border: none;
+  font-size: 16px;
+  background-color: #EFEFEF;
+  color: #444444;
+}
+
+.transaction-history {
+  width: 100%;
+  border: none; /* 테두리 제거 */
+  display: flex;
+  border-radius: 5px;
+}
+
+.transaction-history__sale,
+.transaction-history__purchase {
+  width: 400px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.transaction-history__sale a,
+.transaction-history__purchase a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.transaction-history__sale:active,
+.transaction-history__purchase:active {
+  opacity: 0.7;
+}
+
+.transaction-history__sale {
+  border-right: none; /* 우측 테두리 제거 */
+}
